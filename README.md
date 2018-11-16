@@ -1,2 +1,2 @@
 # Mayathon
-Aplicacion de ;ayasoft
+Aplicacion de Mayasoft
