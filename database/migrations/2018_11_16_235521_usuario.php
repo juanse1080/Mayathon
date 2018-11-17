@@ -27,7 +27,7 @@ class Usuario extends Migration {
             $table->unsignedInteger('fk_usuario');
             $table->string('titulo');
             $table->string('descripcion');
-            $table->integer('categoria');
+            $table->string('categoria');
             $table->boolean('estado')->default(true);
             $table->integer('riesgo')->nullable();
             $table->float('monto_requerido');
