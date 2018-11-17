@@ -1,9 +1,5 @@
 <?php
 /*
-  SUPRACONTROLLER
-  AUTOR: Douglas Ramírez
-  VERSIÓN: 0.1
-  DESCRIPCIÓN:
   Ésta clase tiene como objetivo agrupar todos los métodos necesarios
   en las demás clases, a modo de no repetir código y cumplir con el
   single responsibility principle.
