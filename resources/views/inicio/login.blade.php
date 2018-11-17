@@ -10,16 +10,6 @@
           @include('error.login')
           <form class="login-form" action="{{route('authenticate')}}" method="POST">
             @csrf
-            <div class='form-group'>
-              <label for="role" class="text-uppercase">Tipo de Usuario</label>
-              <select class="custom-select" name="role" id="role">
-                <option selected>Seleccionar...</option>
-                <option value="0" @if(old('role') == '0') selected @endif >Administrador</option>
-                <option value="1" @if(old('role') == '1') selected @endif >Director</option>
-                <option value="2" @if(old('role') == '2') selected @endif >Profesor</option>
-                <option value="3" @if(old('role') == '3') selected @endif >Estudiante</option>
-              </select>
-            </div>
             <div class="form-group">
               <label for="username" class="text-uppercase">Usuario</label>
               <input type="text" class="form-control" placeholder="" name='username' id='username' value="{{old('username')}}">

@@ -17,7 +17,7 @@ class LoginController extends Controller{
     }
 
     public function authenticate(Request $request){
-        return $this->auth('administrador', ["pk_usuario" => $request->username, "password" => $request->password, 'role' => $request->role], '/home');
+        return $this->auth(["pk_usuario" => $request->username, "password" => $request->password], '/home');
     }
 
     public function logout(){
@@ -29,6 +29,7 @@ class LoginController extends Controller{
     /* Este metodo verifica el login, ademas de esto, crea una variable de session con los datos 
        del usuario autenticado */
     private function auth($credenciales, $ruta){
+        dd($credenciales);
         $auth = Auth::attempt($credenciales);
         if($auth){
             session(['datos'=> Auth::user()->session()]);
