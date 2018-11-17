@@ -13,7 +13,7 @@ class InversionStore extends FormRequest{
     public function rules(){
         return [
             'fk_solicitud' => 'required|numeric',
-            'monto' => 'required|numeric'
+            'monto' => 'required|numeric|min:1'
         ];
     }
 

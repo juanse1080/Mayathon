@@ -162,7 +162,7 @@
 															<i class="fab fa-youtube"></i>
 													</span>
 												</div>
-														<input type="text" name="video" class="form-control form-control-sm" placeholder="Ingrese la url despues de https://www.youtube.com/" id="video" onblur="videop()" value="@eachError('video', $errors) @endeachError">
+														<input type="text" name="video" class="form-control form-control-sm" placeholder="Ingrese la url despues de https://www.youtube.com/watch?v=" id="video" onblur="videop()" value="@eachError('video', $errors) @endeachError">
 
 											</div>
 	

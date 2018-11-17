@@ -102,7 +102,7 @@
                                 <b>Videos explicativos:</b><br>
                                 @foreach ($videos as $m)
                                     {{$m->descripcion}} 
-                                    <iframe  id="videoSalida" width="100%" src="https://www.youtube.com/embed/{{$m->url}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><br>
+                                    <iframe  id="videoSalida" width="642" height="361" src="https://www.youtube.com/embed/{{$m->url}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><br>
                                 @endforeach
                             @endif
                         </li>

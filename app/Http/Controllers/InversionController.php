@@ -40,7 +40,7 @@ class InversionController extends Controller {
             return back()->withInput()->with('false', 'La solucitud escogida no existe.');
         }else{
             $solicitud=$solicitud[0];
-            if(($solicitud->monto_juntado+$request->monto) <= $solicitud->monto_requerido ){
+            if(($solicitud->monto_juntado+$request->monto) <= $solicitud->monto_requerido){
                 $inversion = (new Inversion)->fill($request->all());
                 $inversion->fk_usuario=session('datos')['pk_usuario'];
                 $solicitud->monto_juntado=$solicitud->monto_juntado+$request->monto;
