@@ -5,6 +5,7 @@
     <div class="container">
         <br><h2 class="text-center">Sus Solicitudes</h2> <br>  
         <div class="row">
+            @csrf
 						{{-- filtro --}}
 						<div class="col-md-4"></div>
                         <div class="col-md-4">
@@ -80,8 +81,8 @@
                                   solo tienes que dar clic el boton aceptar de lo contrario, rechazalos.
                                 </div>
                                 <div class="modal-footer">
-                                  <button type="button" respuesta ="false" class="btn btn-secondary" data-dismiss="modal">Rechazarlos</button>
-                                  <button type="button" respuesta ="true" class="btn btn-primary">Aceptarlos</button>
+                                  <button type="button" identificador="{{$item->pk_solicitud}}" respuesta ="a" class="clos btn btn-secondary" data-dismiss="modal">Rechazarlos</button>
+                                  <button type="button" identificador="{{$item->pk_solicitud}}" respuesta ="r" class="clos btn btn-primary">Aceptarlos</button>
                                 </div>
                               </div>
                             </div>
@@ -97,9 +98,11 @@
 </div>
 <script>
     $(document).ready(function(){
-        $('.close').click(function(){
+        $('.clos').click(function(){
+            var h = $('.btn-danger');
+            var id = $(this).attr('identificador');
             var respuesta = $(this).attr('respuesta');
-            deleteRegistro(ruta, id, null);
+            update('aceptar', id, respuesta, h);
         });
     });
 </script>

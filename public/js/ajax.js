@@ -55,6 +55,21 @@ function deleteRegistro(ruta, id, hidden){
     });
 }
 
+function update(ruta, id, respuesta, h){
+    $.ajax({
+        type: 'POST',
+        url: '/'+ruta+'/'+id,
+        data: {_token:$('input[name=_token]').val(), res:respuesta},
+        success: function(data) {
+            h.fadeOut();
+            newModal('Acción satisfactoria',data.mensaje, false);
+        },
+        error: function(){
+            newModal('Error','La accion no pudo llevarse a cabo', false);
+        }
+    });
+}
+
 $(document).ready(function(){
     $('.close').click(function(){
         var id = $(this).attr('identificador');

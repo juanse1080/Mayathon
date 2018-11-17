@@ -38,6 +38,6 @@ Route::get('/home','SolicitudController@mostrarS');
 
 Route::resource('inversiones','InversionController');
 
-Route::get('/aceptar','SolicitudesController@confirmacion');
+Route::post('/aceptar/{pk}','SolicitudController@confirmacion');
 
 

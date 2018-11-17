@@ -6,6 +6,7 @@ use Illuminate\Console\Command;
 
 use App\Solicitud;
 use App\Notificacion;
+use App\Inversion;
 
 class notificacionSolicitante extends Command
 {
@@ -43,8 +44,8 @@ class notificacionSolicitante extends Command
         $dia = date('Y-m-d');
         foreach ($solicitudes as $value) {
             if($value->tiempo_recaudacion < $dia){
-                $solicitud->estado = 'e';
-                $solicitud->save();
+                $value->estado = 'e';
+                $value->save();
                 Notificacion::create([
                     'fk_usuario' => $value->fk_usuario,
                     'estado' => false,

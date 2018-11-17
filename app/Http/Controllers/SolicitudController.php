@@ -202,7 +202,7 @@ class SolicitudController extends Controller {
     }
 
     //Util para el seeder
-    private function creadorRiesgo($usuario,$solicitud){
+    public function creadorRiesgo($usuario,$solicitud){
         if($usuario->empresa){
             $tipo=0;
             if($edad>1){
@@ -332,8 +332,10 @@ class SolicitudController extends Controller {
 
     public function confirmacion(request $request, $id){
         if($request->ajax()){
-            $notificaciones = Solicitud::where('pk_solicitud',$id)->where('fk_solicitud',session('datos')['pk_usuario'])->get()[0];
-            if(count($notificaciones) == 1){
+            $solicitud = Solicitud::where('pk_solicitud',$id)->where('fk_usuario',session('datos')['pk_usuario'])->get();
+            if(count($solicitud) == 1){
+                $solicitud->estado = $request->res;
+                $solicitud->save();
                 return response()->json([
                     'mensaje' => 'Se registro con exito',
                 ]);
