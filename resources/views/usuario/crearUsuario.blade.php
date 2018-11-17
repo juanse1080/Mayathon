@@ -1,0 +1,1 @@
+@extends('contenedores.admin')
