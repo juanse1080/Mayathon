@@ -68,6 +68,10 @@ class UsuarioController extends Controller
         //
     }
 
+    public function editSolicitante(){
+        $user=session('datos');
+        dd($user);
+    }
     /**
      * Update the specified resource in storage.
      *

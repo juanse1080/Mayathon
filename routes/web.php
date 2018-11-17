@@ -26,6 +26,11 @@ Route::resource('/usuarios','UsuarioController');
 Route::get('/home', function () {
     return view('inicio.home');
 });
+Route::get('/usuarios/solicitante/edit', 'UsuarioController@editSolicitante');
+Route::post('/usuarios/solicitante/', 'UsuarioController@updateSolicitante');
+
+//   RUTAS SOLICITUDES
 Route::resource('/solicitudes','SolicitudController');
 
 Route::resource('inversiones','InversionController');
+
