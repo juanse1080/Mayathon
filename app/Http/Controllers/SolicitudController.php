@@ -14,7 +14,7 @@ class SolicitudController extends Controller
      */
     public function index()
     {
-        //
+        return view('usuarios.solicitudes');
     }
 
     /**
@@ -22,9 +22,8 @@ class SolicitudController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
+    public function create(){
+        return view('solicitudes.crearSolicitud');
     }
 
     /**
@@ -33,9 +32,9 @@ class SolicitudController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(SolicitudStoreController $request){
+        $solicitud = (new Solicitud)->fill(SupraController::minuscula($request->all()));
+        
     }
 
     /**

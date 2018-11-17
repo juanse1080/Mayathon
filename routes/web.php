@@ -22,7 +22,8 @@ Route::get('/logout', 'LoginController@logout')->name('logout');
 
 
 /*   RUTAS USUARIOS */
-Route::resource('usuarios/crear','UsuarioController');
+Route::resource('/usuarios','UsuarioController');
 Route::get('/home', function () {
     return view('inicio.home');
 });
+Route::resource('/solicitudes','SolicitudController');

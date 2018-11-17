@@ -3,6 +3,7 @@
 <html>
 <head>
     <!-- Esta es la plantilla para el manejo de sesion en laravel -->
+    <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
     <!--Import Awesome Icon Font-->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
     <!--Import bootstrap.css-->
@@ -26,7 +27,7 @@
     @include('footers.principal')
 
     <!--JavaScript at end of body for optimized loading-->
-    <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
+    
     <script type="text/javascript" src="{{ asset('js/popper.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
 
