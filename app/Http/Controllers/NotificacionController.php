@@ -79,8 +79,15 @@ class NotificacionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        //
+    public function destroy($id, request $request){
+        if($request->ajax()){
+            $empleado = Notificacion::findOrFail($id);
+            $empleado->update([
+                'estado' => true,
+            ]);
+            return response()->json([
+                'mensaje' => 'Fue actualizado'
+            ]);
+        }
     }
 }

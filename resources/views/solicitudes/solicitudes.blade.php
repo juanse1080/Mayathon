@@ -3,6 +3,22 @@
 @section('contenedor_home')
     <br>
     <div class="container">
+        <br><h2 class="text-center">Sus Solicitudes</h2> <br>  
+        <div class="row">
+						{{-- filtro --}}
+						<div class="col-md-4"></div>
+                        <div class="col-md-4">
+                            <div class="input-group mb-2">
+                                <div class="input-group-prepend">
+                                    <span class= "input-group-text">
+                                        <i class="fas fa-filter"></i>
+                                    </span>
+                                </div>
+                                <input type="text" class="form-control form-control-sm"  id="entradafilter" name="titulo" placeholder="Filtrar Resultados" >
+                            </div>
+						</div>
+          </div><br>
+          <div class="contenidobusqueda" id="myTable">
         @foreach ($solicitudes as $key => $item)
             @if ($key%3 == 0)
                 <div class="card-deck" >
@@ -46,6 +62,7 @@
             @endif
         @endforeach
     </div>
+</div>
 @endsection
 
 {{-- {{asset($solicitudes->)}} --}}

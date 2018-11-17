@@ -11,8 +11,7 @@
 |
 */
 
-use App\Notificacion;
-use App\Http\Controllers\NotificacionController;
+
 
 Route::get('/', function () {
     return view('inicio.inicio');
@@ -26,17 +25,16 @@ Route::get('/logout', 'LoginController@logout')->name('logout');
 
 /*   RUTAS USUARIOS */
 Route::resource('/usuarios','UsuarioController');
-Route::get('/home', function () {
-    $notificaciones = Notificacion::where('notificacion.fk_usuario',session('datos')['pk_usuario'])->get();
-    session(['noti'=>count($notificaciones)]);
-    return view('inicio.home');
-});
 Route::resource('/notificaciones', 'NotificacionController');
 Route::get('/usuarios/solicitante/edit', 'UsuarioController@editSolicitante');
 Route::post('/usuarios/solicitante/', 'UsuarioController@updateSolicitante');
+Route::get('/perfil', function () {
+    return view('inicio.perfil');
+});
 
 //   RUTAS SOLICITUDES
 Route::resource('/solicitudes','SolicitudController');
+Route::get('/home','SolicitudController@mostrarS');
 
 Route::resource('inversiones','InversionController');
 
