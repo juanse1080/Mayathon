@@ -187,7 +187,7 @@
             <div class="col-md-4 ">
                 <a class=" btn btn-secondary btn-block " id="delete"><i class="fas fa-minus" style="color: white !important;"></i></a>
             </div>
-        </div>
+        </div><br>
 					<div class="row">
 							<div class="col-md-2"></div>
 							<div class="col-md-8">
@@ -282,7 +282,7 @@ function videop(){
     });
 
 		$('#delete').click(function(){
-        $('#div .meno:last').remove();
+        $('.meno:last').remove();
         i--;
     });
 </script>
