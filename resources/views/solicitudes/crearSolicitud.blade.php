@@ -30,7 +30,7 @@
 						</div>
                     </div>
 					<div class="row">
-						{{-- Rol --}}
+						{{-- descripcion --}}
 						<div class="col-md-2"></div>
                         <div class="col-md-8">
                             <div class="input-group mb-2">
@@ -41,7 +41,7 @@
 								</div>
 								{{-- <input type="text" class="form-control form-control-sm"  id="titulo" name="titulo" placeholder="Titulo Solicitud" value="@eachError('titulo', $errors) @endeachError"> --}}
 
-                                <textarea class="form-control form-control-sm" name="descripcion" id="descripcion" cols="50" rows="5" placeholder="Describe tu Solicitud" value="@eachError('titulo', $errors) @endeachError"></textarea>
+                                <textarea class="form-control form-control-sm" name="descripcion" id="descripcion" cols="50" rows="5" placeholder="Describe tu Solicitud" value="@eachError('descripcion', $errors) @endeachError"></textarea>
                                 
                             </div>
                         </div>
@@ -56,6 +56,11 @@
                                 </div>
 								<select  id="categoria" name="categoria" placeholder="Categoria de la solicitud" class="form-control form-control-sm" value="@eachError('categoria', $errors)@endeachError">
 										<option value="">Seleccione una categoria</option>
+										<option value="educacion">Educacion</option>
+										<option value="investigacion">Investigacion</option>
+										<option value="arte">Arte</option>
+										<option value="empresa">Empresa</option>
+										<option value="personal">Personal</option>
 										
 								</select>
 							</div>
@@ -117,11 +122,67 @@
 					<div class="row">
 							<div class="col-md-2"></div>
 							<div class="col-md-8">
-									<input name="file-input" id="file-input" type="file" />
-									<br />
-									<img id="imgSalida" width="50%" height="50%" src="" />
+									<div class="input-group mb-2">
+											{{-- Foto --}}
+												<div class="input-group-prepend" style="height: calc(1.8125rem + 2px); font-size: .875rem;">
+													<i class="fas fa-file-image input-group-text"></i>
+												</div>
+												<div class="custom-file">
+													<input type="file" name="foto" class="custom-file-input form-group" id="customFileLang" lang="es">
+													<label id="file" class="custom-file-label" for="customFileLang">Sube una foto</label>
+												</div>
+											</div>
+	
+										
 							</div>
 					</div>
+					<div class="row">
+							<div class="col-md-2"></div>
+							<div class="col-md-8">
+								<div class="row">
+										<div class="col-md-2"></div>
+										<div class="col-md-8">
+											{{-- Foto --}}
+											<img id="imgSalida" width="100%" style="display:none" src="" />
+											<textarea style="display:none" class="form-control form-control-sm" name="descripcion_foto" id="descripcion_foto" cols="50" rows="3" placeholder="Describe tu foto" value="@eachError('descripcion_foto', $errors) @endeachError"></textarea>
+
+										</div>
+									</div>
+							</div>
+					</div>
+
+					<div class="row">
+							<div class="col-md-2"></div>
+							<div class="col-md-8">
+									<div class="input-group mb-2">
+											{{-- video --}}
+											<div class="input-group-prepend">
+													<span class="input-group-text">
+															<i class="fab fa-youtube"></i>
+													</span>
+												</div>
+														<input type="text" name="video" class="form-control form-control-sm" placeholder="Ingrese la url despues de https://www.youtube.com/" id="video" onblur="videop()">
+
+											</div>
+	
+										
+							</div>
+					</div>
+					<div class="row">
+							<div class="col-md-2"></div>
+							<div class="col-md-8">
+								<div class="row">
+										<div class="col-md-2"></div>
+										<div class="col-md-8">
+											{{-- video --}}
+											<iframe style="display:none" id="videoSalida" width="100%" src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+											<textarea style="display:none" class="form-control form-control-sm" name="descripcion_video" id="descripcion_video" cols="50" rows="3" placeholder="Describe tu foto" value="@eachError('descripcion_video', $errors) @endeachError"></textarea>
+
+										</div>
+									</div>
+							</div>
+					</div>
+					
 					<div class="row">
 							<div class="col-md-2"></div>
 							<div class="col-md-8">
@@ -142,13 +203,23 @@
 <br>
 
 <script>
+function videop(){
+	result = document.getElementById('videoSalida');
+	val = document.getElementById('video').value;
+	result.style.display = "inline";
+	inicio = "https://www.youtube.com/embed/";
+	result.src = inicio+val;
+	document.getElementById('descripcion_video').style.display = "inline";
+};
 //carga imagen
-$(window).load(function(){
+$(window).on('load', function(){
 
 $(function() {
- $('#file-input').change(function(e) {
+ $('#customFileLang').change(function(e) {
 	 addImage(e); 
 	});
+
+
 
 	function addImage(e){
 	 var file = e.target.files[0],
@@ -164,6 +235,8 @@ $(function() {
  
 	function fileOnload(e) {
 	 var result=e.target.result;
+	 document.getElementById('imgSalida').style.display = "inline";
+	 document.getElementById('descripcion_foto').style.display = "inline";
 	 $('#imgSalida').attr("src",result);
 	}
    });
