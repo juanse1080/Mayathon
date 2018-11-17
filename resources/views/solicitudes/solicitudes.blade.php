@@ -8,10 +8,16 @@
                 <div class="card-deck" >
             @endif
             <div class="card">
-                @if ($item->)
-                    
+                @if (!isset($fotos[$key][0]))
+                    @php
+                        $url = asset('/storage/default.jpeg');
+                    @endphp
+                @else
+                    @php
+                        $url = asset($fotos[$key][0]->url)
+                    @endphp
                 @endif
-                <img class="card-img-top" src="" alt="Card image" style="width:100%">
+                <img class="card-img-top" src="{{$url}}" alt="Card image" style="width:100%">
                 <div class="card-body">
                     <h4 class="card-title">{{$item->titulo}}</h4>
                     <p class="card-text">
@@ -31,7 +37,7 @@
                         @endfor
                         {{$des}}
                     </p>
-                    <a href="{{route('solicitudes.show',$item->pk_solicitud)}}" class="btn btn-primary">See Profile</a>
+                    <a href="{{route('solicitudes.show',$item->pk_solicitud)}}" class="btn btn-primary">ver mas</a>
                 </div>
             </div>
             @if (($key+1)%3 == 0 OR ($key+1) == $num)

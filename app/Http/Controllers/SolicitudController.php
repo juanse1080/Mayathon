@@ -12,10 +12,18 @@ use App\Multimedia;
 class SolicitudController extends Controller {
 
     public function index(){
-        $solicitudes = Solicitud::where('solicitud.fk_usuario',session('datos')['pk_usuario'])->where('multimedia.tipo','foto')->leftjoin('multimedia','multimedia.fk_solicitud','=','solicitud.pk_solicitud')->get();
-        dd($solicitudes);
-        // dd(count($solicitudes));
-        return view('solicitudes.solicitudes', ['solicitudes' => $solicitudes, 'num' => count($solicitudes)]);
+        $solicitudes = Solicitud::where('solicitud.fk_usuario',session('datos')['pk_usuario'])->get();
+        $fotos = [];
+        foreach ($solicitudes as $key => $value) {
+            $fotos[$key] = [];
+        }
+        foreach ($solicitudes as $key => $value) {
+            $multimedia = Multimedia::where('fk_solicitud',$value->pk_solicitud)->where('tipo','foto')->get();
+            if (!empty($multimedia[0])) {
+                array_push($fotos[$key],$multimedia[0]);
+            }
+        }
+        return view('solicitudes.solicitudes', ['solicitudes' => $solicitudes, 'num' => count($solicitudes),'fotos' => $fotos]);
     }
 
     public function create(){
@@ -170,7 +178,13 @@ class SolicitudController extends Controller {
      */
     public function show($id)
     {
-        return view("solicitudes.verSolicitud_prueba"); //Paola
+        $solicitud = Solicitud::where('solicitud.fk_usuario',session('datos')['pk_usuario'])->where('solicitud.pk_solicitud',$id)->get();
+        if (count($solicitud) == 1) {
+            $fotos = Multimedia::where('fk_solicitud',$solicitud[0]->pk_solicitud)->get();
+            return view("solicitudes.verSolicitud", ['solicitud' => $solicitud[0], 'fotos' => $fotos]);
+        }else{
+            return back();
+        }
     }
 
     /**
