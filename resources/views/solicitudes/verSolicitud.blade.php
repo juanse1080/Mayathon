@@ -63,7 +63,7 @@
                                         <div class="card border-primary rounded-0" style="border-color:#66bb6a !important;">
                                         <input type="number" name="fk_solicitud" id="fk_solicitud" value="{{$solicitud->pk_solicitud}}" hidden>
                                             <div class="text-center">
-                                                <input type="submit" id="submitbtn" name="action" value="Invertir" class=" btn btn-info btn-block rounded-0 py-2 " style="background-color: #2c652f !important; border-color: #66bb6a !important;">
+                                                <input {{($solicitud->fk_usuario==session("datos")["pk_usuario"])?"disabled":""}} type="submit" id="submitbtn" name="action" value="Invertir" class=" btn btn-info btn-block rounded-0 py-2 " style="background-color: #2c652f !important; border-color: #66bb6a !important;">
                                             </div>
                                         </div>
                                     </form>
