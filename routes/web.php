@@ -15,9 +15,9 @@ Route::get('/', function () {
     return view('inicio.inicio');
 });
 
-Route::get('/login', function () {
-    return "view('inicio.login')";
-});
+Route::get('/login', 'LoginController')->name('login');
+Route::post('/login', 'LoginController@authenticate')->name('authenticate');
+Route::get('/logout', 'LoginController@logout')->name('logout');
 
 /*   RUTAS USUARIOS */
 Route::resource('usuarios/crear','UsuarioController');
