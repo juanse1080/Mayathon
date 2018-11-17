@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Notificacion;
 
-class SolicitudesController extends Controller
+class NotificacionController extends Controller
 {
     /**
      * Display a listing of the resource.
