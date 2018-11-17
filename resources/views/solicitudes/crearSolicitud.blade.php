@@ -165,20 +165,7 @@
 							</div>
 					</div>
 				</div>
-					<div class="row">
-							<div class="col-md-2"></div>
-							<div class="col-md-8">
-								<div class="row">
-										<div class="col-md-2"></div>
-										<div class="col-md-8">
-											{{-- video --}}
-											<iframe style="display:none" id="videoSalida" width="100%" src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-											<textarea style="display:none" class="form-control form-control-sm" name="descripcion_video" id="descripcion_video" cols="50" rows="3" placeholder="Describe tu video" value="@eachError('descripcion_video', $errors) @endeachError"></textarea>
-
-										</div>
-									</div>
-							</div>
-					</div>
+					
 					<div class="row">
             <div class="col-md-2"></div>
             <div class="col-md-4 ">
@@ -258,7 +245,7 @@
 
 
 
-
+{{-- 
 
 <script>
 function videop(){
@@ -269,7 +256,7 @@ function videop(){
 	result.src = inicio+val;
 	document.getElementById('descripcion_video').style.display = "inline";
 };
-</script>
+</script> --}}
 <script>
 		$('#create').click(function(){
         i++;
