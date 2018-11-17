@@ -42,12 +42,12 @@
                     <h4 class="card-title">{{$item->titulo}}</h4>
                     <p class="card-text">
                         @php
-                          $n = 40;  
+                          $n = 40;
+                          $des = '';
                         @endphp
                         @if (strlen($item->descripcion) < $n)
                             @php
                                 $n = strlen($item->descripcion);
-                                $des = '';
                             @endphp
                         @endif
                         @for ($i = 0; $i < $n; $i++)
