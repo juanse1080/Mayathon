@@ -196,7 +196,8 @@ class SolicitudController extends Controller {
                     'url' => $IDvideo,
                 ]);
             }
-        }    
+        }
+        return redirect(route('solicitudes.show',$solicitud->pk_solicitud));
     }
 
     //Util para el seeder

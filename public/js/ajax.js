@@ -47,7 +47,7 @@ function deleteRegistro(ruta, id, hidden){
         data: {_token:$('input[name=_token]').val(), _method:'DELETE'},
         success: function(data) {
             hidden.fadeOut();
-            newModal('Acción satisfactoria',data.mensaje, false);
+            // newModal('Acción satisfactoria',data.mensaje, false);
         },
         error: function(){
             newModal('Error','La accion no pudo llevarse a cabo', false);
