@@ -178,13 +178,11 @@ class SolicitudController extends Controller {
      */
     public function show($id)
     {
-        $solicitud = Solicitud::where('solicitud.fk_usuario',session('datos')['pk_usuario'])->where('solicitud.pk_solicitud',$id)->get();
-        if (count($solicitud) == 1) {
-            $fotos = Multimedia::where('fk_solicitud',$solicitud[0]->pk_solicitud)->get();
-            return view("solicitudes.verSolicitud", ['solicitud' => $solicitud[0], 'fotos' => $fotos]);
-        }else{
-            return back();
-        }
+        $solicitud = Solicitud::where('solicitud.pk_solicitud',$id)->get()[0];
+        $fotos = Multimedia::where([['fk_solicitud',$id],['tipo','foto']])->get();
+        $videos = Multimedia::where([['fk_solicitud',$id],['tipo','video']])->get();
+        return view('solicitudes.verSolicitud',['solicitud'=>$solicitud,'fotos'=>$fotos,'videos'=>$videos]);
+        
     }
 
     /**
