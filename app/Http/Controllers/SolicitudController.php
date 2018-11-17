@@ -335,10 +335,9 @@ class SolicitudController extends Controller {
             $notificaciones = Solicitud::where('pk_solicitud',$id)->where('fk_solicitud',session('datos')['pk_usuario'])->get()[0];
             if(count($notificaciones) == 1){
                 return response()->json([
-                    'mes' => count($notificaciones),
+                    'mensaje' => 'Se registro con exito',
                 ]);
             }
-            
         }
     }
     /**
