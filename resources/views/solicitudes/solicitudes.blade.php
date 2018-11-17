@@ -80,8 +80,8 @@
                                   solo tienes que dar clic el boton aceptar de lo contrario, rechazalos.
                                 </div>
                                 <div class="modal-footer">
-                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Rechazarlos</button>
-                                  <button type="button" class="btn btn-primary">Aceptarlos</button>
+                                  <button type="button" respuesta ="false" class="btn btn-secondary" data-dismiss="modal">Rechazarlos</button>
+                                  <button type="button" respuesta ="true" class="btn btn-primary">Aceptarlos</button>
                                 </div>
                               </div>
                             </div>
@@ -95,6 +95,14 @@
         @endforeach
     </div>
 </div>
+<script>
+    $(document).ready(function(){
+        $('.close').click(function(){
+            var respuesta = $(this).attr('respuesta');
+            deleteRegistro(ruta, id, null);
+        });
+    });
+</script>
 @endsection
 
 {{-- {{asset($solicitudes->)}} --}}

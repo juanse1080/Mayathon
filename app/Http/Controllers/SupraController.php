@@ -21,9 +21,9 @@
       del input del formulario (ej: foto, pdf, ...)
       Autor: Douglas y Pepe
     */
-    public static function subirArchivo(Request $request,String $nombre,String $input){
-      $nombre .= '.'.$request->file($input)->clientExtension();
-      $file = $request->file($input)->storeAs('public', $nombre);
+    public static function subirArchivo($request,String $nombre,String $input){
+      $nombre .= '.'.$request.'.jpeg';
+      $file = $request->storeAs('public', $nombre);
       return "/storage/".$nombre;
     }
     /*
