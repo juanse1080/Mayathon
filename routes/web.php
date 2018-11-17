@@ -26,3 +26,4 @@ Route::resource('/usuarios','UsuarioController');
 Route::get('/home', function () {
     return view('inicio.home');
 });
+Route::resource('/solicitudes','SolicitudController');
