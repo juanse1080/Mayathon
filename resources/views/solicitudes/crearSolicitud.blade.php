@@ -56,6 +56,11 @@
                                 </div>
 								<select  id="categoria" name="categoria" placeholder="Categoria de la solicitud" class="form-control form-control-sm" value="@eachError('categoria', $errors)@endeachError">
 										<option value="">Seleccione una categoria</option>
+										<option value="educacion">Educacion</option>
+										<option value="investigacion">Investigacion</option>
+										<option value="arte">Arte</option>
+										<option value="empresa">Empresa</option>
+										<option value="personal">Personal</option>
 										
 								</select>
 							</div>
