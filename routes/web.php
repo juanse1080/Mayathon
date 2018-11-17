@@ -26,6 +26,7 @@ Route::resource('/usuarios','UsuarioController');
 Route::get('/home', function () {
     return view('inicio.home');
 });
+Route::resource('/notificaciones', 'NotificacionController');
 Route::get('/usuarios/solicitante/edit', 'UsuarioController@editSolicitante');
 Route::post('/usuarios/solicitante/', 'UsuarioController@updateSolicitante');
 
