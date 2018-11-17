@@ -10,8 +10,23 @@ use App\Solicitud;
 class InversionController extends Controller {
 
     public function index(){
-        $inversiones = Inversion::where('fk_usuario',session('datos')['pk_usuario'])->get();
-        dd($inversiones);
+        $inversiones = Inversion::where('inversion.fk_usuario',session('datos')['pk_usuario'])->join("solicitud","inversion.fk_solicitud","=","solicitud.pk_solicitud")->get();
+        foreach ($inversiones as $i) {
+            if($i->tiempo_recaudacion > date('Y-m-d')){
+                if ($i->monto_requerido==$i->monto_juntado) {
+                    $i->estado2="Monto requerido recolectado";
+                }else{
+                    $i->estado2="Recuadando";
+                }
+            }else{
+                if($i->estado){
+                    $i->estado2="Aprovado";    
+                }else{
+                    $i->estado2="Rechazado";
+                }
+            }
+        }
+        return view("inversiones.susInversiones",compact('inversiones'));
     }
 
     public function create(Request $request){
