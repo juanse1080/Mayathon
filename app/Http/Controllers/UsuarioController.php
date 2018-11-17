@@ -24,7 +24,7 @@ class UsuarioController extends Controller
      */
     public function create()
     {
-        return view('usuarion.crearUsuario');
+        return view('usuarios.crearUsuario');
     }
 
     /**
@@ -33,7 +33,7 @@ class UsuarioController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UsuarioStoreController $request)
     {
         
     }
