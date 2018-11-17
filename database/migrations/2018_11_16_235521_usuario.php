@@ -30,8 +30,8 @@ class Usuario extends Migration {
             $table->integer('categoria');
             $table->boolean('estado')->default(true);
             $table->integer('riesgo')->nullable();
-            $table->integer('monto_requerido');
-            $table->integer('monto_juntado')->default(0);
+            $table->float('monto_requerido');
+            $table->float('monto_juntado')->default(0);
             $table->float('interes');
             $table->date('tiempo_recaudacion');
             $table->integer('tiempo_devolucion');
@@ -51,7 +51,7 @@ class Usuario extends Migration {
             $table->increments('pk_inversion');
             $table->unsignedInteger('fk_solicitud');
             $table->unsignedInteger('fk_usuario');
-            $table->integer('monto');
+            $table->float('monto');
             $table->timestamps();
         });
 
