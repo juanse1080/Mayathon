@@ -17,11 +17,11 @@ class InversionController extends Controller {
         // dd($inversiones);
     }
 
-    public function create(){
-        
+    public function create(Request $request){
+        dd($request);
     }
 
-    public function store(Request $request){
+    public function store(Request $request,$fk){
         //
     }
 

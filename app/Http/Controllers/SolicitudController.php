@@ -57,7 +57,7 @@ class SolicitudController extends Controller
      */
     public function show($id)
     {
-        //
+        return view("solicitudes.verSolicitud_prueba"); //Paola
     }
 
     /**
