@@ -4,6 +4,8 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use App\Console\Commands\notificacionSolicitante;
+use App\Notificacion;
 
 class Kernel extends ConsoleKernel {
     
@@ -12,7 +14,12 @@ class Kernel extends ConsoleKernel {
     ];
 
     protected function schedule(Schedule $schedule){
-        $schedule->command('notificacion:solicitante')->everyMinute();
+        echo "holi";
+        while(true){
+            notificacionSolicitante::handle();
+            sleep(10);
+        }
+        // $schedule->command('notificacion:solicitante')->everyMinute();
     }
 
     protected function commands()

@@ -38,7 +38,7 @@ class notificacionSolicitante extends Command
      *
      * @return mixed
      */
-    public function handle(){
+    public static function handle(){
         $solicitudes = new Solicitud;
         $solicitudes = $solicitudes->where('estado', true)->get();
         $dia = date('Y-m-d');
@@ -53,5 +53,7 @@ class notificacionSolicitante extends Command
                 ]);
             }
         }
+        $notificaciones = Notificacion::where('notificacion.fk_usuario',session('datos')['pk_usuario'])->get();
+        session(['noti'=>count($notificaciones)]);
     }
 }
