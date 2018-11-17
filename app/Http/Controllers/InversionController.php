@@ -16,7 +16,7 @@ class InversionController extends Controller {
                 if ($i->monto_requerido==$i->monto_juntado) {
                     $i->estado2="Monto requerido recolectado";
                 }else{
-                    $i->estado2="Recuadando";
+                    $i->estado2="Recaudando";
                 }
             }else{
                 if($i->estado){

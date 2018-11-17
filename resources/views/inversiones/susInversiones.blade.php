@@ -15,14 +15,19 @@
             </tr>
           </thead>
           <tbody>
-              @foreach ($inversiones as $i)
-                <tr onclick="location.href='/solicitudes/{{$i->fk_solicitud}}';">
-                    <td> {{$i->titulo}} </td>
-                    <td> {{$i->estado2}} </td>
-                    <td> {{$i->monto}} </td>
-                    <td class="text-center"><a href="/solicitudes/{{$i->fk_solicitud}}"><i class="fas fa-plus"></i></a></td>
-                </tr>
-              @endforeach
+              @if (empty($inversiones[0]))
+                <h1 class="text-center">No hay inversiones</h1>
+              @else
+                @foreach ($inversiones as $i)
+                    <tr onclick="location.href='/solicitudes/{{$i->fk_solicitud}}';">
+                        <td> {{$i->titulo}} </td>
+                        <td> {{$i->estado2}} </td>
+                        <td> {{$i->monto}} </td>
+                        <td class="text-center"><a href="/solicitudes/{{$i->fk_solicitud}}"><i class="fas fa-plus"></i></a></td>
+                    </tr>
+                @endforeach
+              @endif
+              
             
           </tbody>
         </table>
