@@ -16,6 +16,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <script>
+        while(true){
+            $.ajax({
+                type: 'POST',
+                url: '/contar',
+                data: {_token:$('input[name=_token]').val(), _method:'POST'},
+                success: function(data) {
+                    hidden.fadeOut();
+                    // newModal('Acción satisfactoria',data.mensaje, false);
+                },
+                error: function(){
+                    newModal('Error','La accion no pudo llevarse a cabo', false);
+                }
+            }).delay();
+        }
+    </script>
 </head>
 <body>
     <!-- En esta parte va el menu con la directiva includee para que quede en el lugar -->

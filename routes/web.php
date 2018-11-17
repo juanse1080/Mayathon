@@ -38,3 +38,6 @@ Route::get('/home','SolicitudController@mostrarS');
 
 Route::resource('inversiones','InversionController');
 
+Route::get('/conteo','NotificacionController@conteoNotificacion');
+
+

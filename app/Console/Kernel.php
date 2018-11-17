@@ -14,11 +14,10 @@ class Kernel extends ConsoleKernel {
     ];
 
     protected function schedule(Schedule $schedule){
-        echo "holi";
-        while(true){
-            notificacionSolicitante::handle();
-            sleep(10);
-        }
+        // while(true){
+        //     notificacionSolicitante::handle();
+        //     sleep(10);
+        // }
         // $schedule->command('notificacion:solicitante')->everyMinute();
     }
 

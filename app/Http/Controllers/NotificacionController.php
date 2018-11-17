@@ -5,13 +5,16 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Notificacion;
 
-class NotificacionController extends Controller
-{
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+class NotificacionController extends Controller {
+
+    public function conteoNotificacion(Request $request){
+        if($request->ajax()){
+            $notificaciones = Notificacion::where('notificacion.fk_usuario',session('datos')['pk_usuario'])->where('estado',false)->get();
+            return response()->json([
+                'numero' => count($notificaciones),
+            ]);
+        }
+    }
     public function index()
     {
         $notificaciones = Notificacion::where('notificacion.fk_usuario',session('datos')['pk_usuario'])->get();
