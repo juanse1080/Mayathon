@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Notificacion;
+use App\Http\Controllers\NotificacionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -33,6 +35,8 @@ class LoginController extends Controller{
         $auth = Auth::attempt($credenciales);
         if($auth){
             session(['datos'=> Auth::user()->session()]);
+            $notificaciones = Notificacion::where('notificacion.fk_usuario',session('datos')['pk_usuario'])->get();
+            session(['noti'=>count($notificaciones)]);
             return redirect($ruta);
         }else{
             return redirect()->route('login')->withInput()->with('false', 'Las credenciales no son correctas');

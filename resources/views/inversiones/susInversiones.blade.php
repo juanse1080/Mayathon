@@ -4,7 +4,7 @@
 @include('error.error')
 <br>
 <div class="container">
-        <br><h2 class="text-center">Sus inversiones</h2> <br>            
+        <br><h2 class="text-center">Sus Inversiones</h2> <br>            
         <table class="table table-striped">
           <thead>
             <tr>

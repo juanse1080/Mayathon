@@ -3,6 +3,7 @@
 @section('contenedor_home')
     <br>
     <div class="container">
+        <br><h2 class="text-center">Sus Solicitudes</h2> <br>  
         @foreach ($solicitudes as $key => $item)
             @if ($key%3 == 0)
                 <div class="card-deck" >

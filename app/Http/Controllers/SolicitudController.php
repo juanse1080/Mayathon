@@ -26,6 +26,21 @@ class SolicitudController extends Controller {
         return view('solicitudes.solicitudes', ['solicitudes' => $solicitudes, 'num' => count($solicitudes),'fotos' => $fotos]);
     }
 
+    public function mostrarS(){
+        $solicitudes = Solicitud::all();
+        $fotos = [];
+        foreach ($solicitudes as $key => $value) {
+            $fotos[$key] = [];
+        }
+        foreach ($solicitudes as $key => $value) {
+            $multimedia = Multimedia::where('fk_solicitud',$value->pk_solicitud)->where('tipo','foto')->get();
+            if (!empty($multimedia[0])) {
+                array_push($fotos[$key],$multimedia[0]);
+            }
+        }
+        return view('inicio.home', ['solicitudes' => $solicitudes, 'num' => count($solicitudes),'fotos' => $fotos]);
+
+    }
     public function create(){
         $r=UsuarioController::editSolicitante();
         if($r==null){
