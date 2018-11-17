@@ -27,3 +27,5 @@ Route::get('/home', function () {
     return view('inicio.home');
 });
 Route::resource('/solicitudes','SolicitudController');
+
+Route::resource('inversiones','InversionController');
