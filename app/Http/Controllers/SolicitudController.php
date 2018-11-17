@@ -7,6 +7,7 @@ use App\Http\Requests\SolicitudStoreController;
 use App\Http\Controllers\SupraController;
 use App\Http\Controllers\UsuarioController;
 use App\Solicitud;
+use App\Multimedia;
 
 class SolicitudController extends Controller
 {
@@ -44,8 +45,14 @@ class SolicitudController extends Controller
     public function store(SolicitudStoreController $request){
         $solicitud = (new Solicitud)->fill($request->all());
         $solicitud->fk_usuario= session('datos')["pk_usuario"];
-        $guarda=$solicitud->save();
-        dd($guarda);
+        $solicitud->save();
+        Multimedia::create([
+            'fk_solicitud' => $solicitud->pk_solicitud,
+            'tipo' => 'foto',
+            'descripcion' => $request->descripcion_video,
+            'url' => 
+        ]);
+        
         
     }
 

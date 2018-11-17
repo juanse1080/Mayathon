@@ -18,7 +18,9 @@ class SolicitudStoreController extends FormRequest{
             'monto_requerido' => 'required|numeric',
             'interes' => 'required|numeric',
             'tiempo_recaudacion' => 'required|date',
-            'tiempo_devolucion' => 'required|numeric'
+            'tiempo_devolucion' => 'required|numeric',
+            'foto' => 'image|mimes:jpeg,bmp,png,jpg',
+            'video' => 'string',
         ];
     }
 
