@@ -4,10 +4,26 @@
 	
 <br>
 <div class="container">
-    <br><h2 class="text-center">Inversiones Disponibles</h2> <br>  
+    <br><h2 class="text-center">Inversiones Disponibles</h2><br>
+    <div class="row">
+            {{-- filtro --}}
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                        <span class= "input-group-text">
+                            <i class="fas fa-filter"></i>
+                        </span>
+                    </div>
+                    <input type="text" class="form-control form-control-sm"  id="entradafilter" name="titulo" placeholder="Filtrar Resultados" >
+                </div>
+            </div>
+</div>      
+<br>
     @php
         $sol=[];
     @endphp
+    <div class="contenidobusqueda" id="myTable">
     @foreach ($solicitudes as $i)
         @if ($i->fk_usuario!=session('datos')['pk_usuario'])
             @php
@@ -57,6 +73,7 @@
             <br>
         @endif
     @endforeach
+</div>
 </div>
 </div>
 <br>
