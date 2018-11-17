@@ -12,7 +12,7 @@ use App\Multimedia;
 class SolicitudController extends Controller {
 
     public function index(){
-        $solicitudes = Solicitud::where('solicitud.fk_usuario',session('datos')['pk_usuario'])->where('multimedia.tipo','foto')->leftjoin('multimedia','multimedia.fk_solicitud','=','solicitud.pk_solicitud')->toSql();
+        $solicitudes = Solicitud::where('solicitud.fk_usuario',session('datos')['pk_usuario'])->where('multimedia.tipo','foto')->leftjoin('multimedia','multimedia.fk_solicitud','=','solicitud.pk_solicitud')->get();
         dd($solicitudes);
         // dd(count($solicitudes));
         return view('solicitudes.solicitudes', ['solicitudes' => $solicitudes, 'num' => count($solicitudes)]);
@@ -31,7 +31,7 @@ class SolicitudController extends Controller {
     public function store(SolicitudStoreController $request){
         $solicitud = (new Solicitud)->fill($request->all());
         $solicitud->fk_usuario= session('datos')["pk_usuario"];
-        $hoy = new DateTime();
+        $hoy = date('Y-m-d');
         $anos = $hoy->diff(session('datos')["fecha_nacimiento"]);
         $edad=$annos->y;
         if(session('datos')["empresa"]){
