@@ -85,7 +85,7 @@
                                         <i class="far fa-calendar-alt" id="titlefecha"> Fecha nacimiento</i>
                                     </span>
                                 </div>
-                                <input type="date" name="fecha_nacimiento" placeholder="dd/mm/yyyy" class="form-control form-control-sm" value="@eachError('fecha_nacimiento', $errors)@endeachError">
+                                <input type="date" name="fecha_nacimiento" placeholder="dd/mm/yyyy" min="2018-11-17" class="form-control form-control-sm" value="@eachError('fecha_nacimiento', $errors)@endeachError">
                             </div>
                         </div>
                     </div>

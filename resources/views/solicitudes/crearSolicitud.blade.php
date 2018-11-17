@@ -95,7 +95,7 @@
 													<i class="far fa-calendar-alt"> Plazo recaudo</i> 
 												</span>
 											</div>
-											<input type="date" name="tiempo_recaudacion" placeholder="dd/mm/yyyy" class="form-control form-control-sm" value="@eachError('tiempo_recaudacion', $errors)@endeachError">
+											<input type="date" min="2018-11-17" name="tiempo_recaudacion" placeholder="dd/mm/yyyy" class="form-control form-control-sm" value="@eachError('tiempo_recaudacion', $errors)@endeachError">
 										</div>
 							</div>
 						</div>
