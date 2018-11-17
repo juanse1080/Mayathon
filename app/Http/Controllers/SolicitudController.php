@@ -53,6 +53,11 @@ class SolicitudController extends Controller {
 
     public function store(SolicitudStoreController $request){
         $solicitud = (new Solicitud)->fill($request->all());
+        if ($request->tiempo_recaudacion < date('Y-m-d')) {
+            $solicitud->estado = 'e';
+        }else{
+            $solicitud->estado = 'i';
+        }
         $solicitud->fk_usuario= session('datos')["pk_usuario"];
         function CalculaEdad( $fecha ) {
             list($Y,$m,$d) = explode("-",$fecha);

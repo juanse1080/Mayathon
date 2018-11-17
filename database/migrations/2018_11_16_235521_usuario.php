@@ -28,7 +28,7 @@ class Usuario extends Migration {
             $table->string('titulo');
             $table->string('descripcion');
             $table->string('categoria');
-            $table->boolean('estado')->default(true);
+            $table->char('estado')->default('i');
             $table->integer('riesgo')->nullable();
             $table->float('monto_requerido');
             $table->float('monto_juntado')->default(0);

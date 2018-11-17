@@ -39,19 +39,54 @@ class notificacionSolicitante extends Command
      * @return mixed
      */
     public static function handle(){
-        $solicitudes = new Solicitud;
-        $solicitudes = $solicitudes->where('estado', true)->get();
+        $solicitudes = Solicitud::where('estado', 'i')->get();
         $dia = date('Y-m-d');
         foreach ($solicitudes as $value) {
             if($value->tiempo_recaudacion < $dia){
+                $solicitud->estado = 'e';
+                $solicitud->save();
                 Notificacion::create([
                     'fk_usuario' => $value->fk_usuario,
                     'estado' => false,
-                    'titulo' => '¡Su solicitud expiro!',
+                    'titulo' => '¡Tu solicitud '.$value->nombre.' expiro!',
                     'url' => '/solicitudes/'.$value->pk_solicitud,
-                    'descripcion' => 'Su solicitud ha expirado el tiempo especificado, por favor confirme el estado de su solicitud'
+                    'descripcion' => 'Tu solicitud numero '.$value->pk_solicitud.' ha expirado. Desea Aceptar el monto recolectado?'
                 ]);
+                $inversion = Inversion::where('fk_solicitud', $value->pk_solicitud)->get();
+                foreach($inversion as $item){
+                    Notificacion::create([
+                        'fk_usuario' => $item->fk_usuario,
+                        'estado' => false,
+                        'titulo' => '¡Inversion numero '.$item->pk_inversion.'!',
+                        'url' => '/inversiones/'.$item->pk_solicitud,
+                        'descripcion' => '¡Tu inversion ha expirado, por favor espera la decision de tu solicitante!'
+                    ]);
+                }
+            }else if($value->monto_requerido == $value->monto_juntado){
+                $solicitud->estado = 'e';
+                $solicitud->save();
+                Notificacion::create([
+                    'fk_usuario' => $value->fk_usuario,
+                    'estado' => false,
+                    'titulo' => '¡Tu solicitud '.$value->nombre.' ha cumplido su objetivo!',
+                    'url' => '/solicitudes/'.$value->pk_solicitud,
+                    'descripcion' => 'Tu solicitud numero '.$value->pk_solicitud.' ha completado el monto solicitado'
+                ]);
+                $inversion = Inversion::where('fk_solicitud', $value->pk_solicitud)->get();
+                foreach($inversion as $item){
+                    Notificacion::create([
+                        'fk_usuario' => $item->fk_usuario,
+                        'estado' => false,
+                        'titulo' => '¡Inversion numero '.$item->pk_inversion.'!',
+                        'url' => '/inversiones/'.$item->pk_solicitud,
+                        'descripcion' => '¡Tu inversion ha alcanzado su objetivo!'
+                    ]);
+                }
             }
+            
+            // foreach($value ){
+
+            // }
         }
         $notificaciones = Notificacion::where('notificacion.fk_usuario',session('datos')['pk_usuario'])->where('estado',false)->get();
         // dd($notificaciones);
