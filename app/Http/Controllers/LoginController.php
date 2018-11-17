@@ -35,7 +35,7 @@ class LoginController extends Controller{
         $auth = Auth::attempt($credenciales);
         if($auth){
             session(['datos'=> Auth::user()->session()]);
-            $notificaciones = Notificacion::where('notificacion.fk_usuario',session('datos')['pk_usuario'])->get();
+            $notificaciones = Notificacion::where('notificacion.fk_usuario',session('datos')['pk_usuario'])->where('estado',false)->get();
             session(['noti'=>count($notificaciones)]);
             return redirect($ruta);
         }else{

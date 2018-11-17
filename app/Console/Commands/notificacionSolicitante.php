@@ -53,7 +53,8 @@ class notificacionSolicitante extends Command
                 ]);
             }
         }
-        $notificaciones = Notificacion::where('notificacion.fk_usuario',session('datos')['pk_usuario'])->get();
+        $notificaciones = Notificacion::where('notificacion.fk_usuario',session('datos')['pk_usuario'])->where('estado',false)->get();
+        // dd($notificaciones);
         session(['noti'=>count($notificaciones)]);
     }
 }
