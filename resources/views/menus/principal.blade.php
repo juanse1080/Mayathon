@@ -1,6 +1,6 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark  lead" style="background-color: #1e88e5;">
-    <a class="navbar-brand" href="">
+    <a class="navbar-brand" href="{{ url('/') }}">
         <i class="pacifico">My Lend</i>
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
