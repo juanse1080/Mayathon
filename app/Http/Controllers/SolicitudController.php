@@ -31,30 +31,38 @@ class SolicitudController extends Controller {
     public function store(SolicitudStoreController $request){
         $solicitud = (new Solicitud)->fill($request->all());
         $solicitud->fk_usuario= session('datos')["pk_usuario"];
-        $hoy = date('Y-m-d');
-        $anos = $hoy->diff(session('datos')["fecha_nacimiento"]);
-        $edad=$annos->y;
+        function CalculaEdad( $fecha ) {
+            list($Y,$m,$d) = explode("-",$fecha);
+            return( date("md") < $m.$d ? date("Y")-$Y-1 : date("Y")-$Y );
+        }
+        $edad=CalculaEdad(session('datos')["fecha_nacimiento"]);
         if(session('datos')["empresa"]){
-            $tipo=3;
+            $tipo=2;
             if($edad>1){
                 if($edad>3){
-                    $tiempo=2;
+                    $tiempo=1;
                 }else{
-                    $tiempo=4;
+                    $tiempo=2;
                 }
             }else{
-                $tiempo=5;
+                $tiempo=3;
             }
         }else{
-            $tipo=6;
+            $tipo=3;
+            if($edad>30 & $edad<60){
+                $tiempo=1;
+            }else{
+                $tiempo=2;
+            }
+            
         }
         if(session('datos')["activos"]>$request->monto_requerido){
             $act=0;
         }else{
             if(session('datos')["activos"]< $request->monto_requerido/2){
-                $act=8;
+                $act=2;
             }else{
-                $act=4;
+                $act=1;
             }
             
         }
@@ -66,75 +74,79 @@ class SolicitudController extends Controller {
                 $cat=1;
                 break;
             case "arte":
-                $cat=6;
+                $cat=2;
                 break;
             case "empresa":
-                $cat=1;
+                $cat=0;
                 break;
             case "personal":
-                $cat=5;
+                $cat=2;
                 break;
         }
 
 
         if(session('datos')["pasivos"] == 0 or session('datos')["activos"]==0){
-            $pa=8;
-        }else{
             $pa=2;
+        }else{
+            $pa=1;
         }
         if(strlen($request->descripcion)>180){
-            $des=4;
+            $des=1;
         }else{
-            $des=8;
+            $des=2;
         }
         if($request->foto==null){
-            $fot=5;
+            $fot=2;
         }else{
             $fot=1;
         }
         if($request->video==null){
-            $vid=5;
+            $vid=2;
         }else{
             $vid=1;
         }
         switch (session('datos')["nivel"]) {
-            case "ninguno":
-                $niv=10;
-                break;
-            case "primaria":
-                $niv=9;
-                break;
-            case "bachiller":
-                $niv=8;
-                break;
-            case "tecnico":
-                $niv=7;
-                break;
-            case "tecnologo":
+            case "Ninguno":
                 $niv=6;
                 break;
-            case "universitario":
+            case "Primaria":
                 $niv=5;
                 break;
-            case "maestria":
+            case "Bachiller":
+                $niv=5;
+                break;
+            case "Tecnico":
                 $niv=4;
                 break;
-            case "doctorado":
+            case "Tecnologo":
                 $niv=3;
                 break;
+            case "Universitario":
+                $niv=3;
+                break;
+            case "Maestria":
+                $niv=2;
+                break;
+            case "Doctorado":
+                $niv=1;
+                break;
+            default:
+                $niv=0;
         }
 
         if($request->monto_requerido>1000000){
             if($request->monto_requerido>100000000){
-                $mon=8;
-            }else{
                 $mon=4;
+            }else{
+                $mon=1;
             }
         }else{
             $mon=2;
         }
         $variables = [$tiempo,$tipo,$act,$pa,$pa,$cat,$des,$fot,$vid,$niv,$mon];
-        $solicitud->riesgo=calcular_var($variables);
+        // dd($variables);
+        $solicitud->riesgo=$this->calcular_var($variables);
+        // dd($solicitud);
         $solicitud->save();
         Multimedia::create([
             'fk_solicitud' => $solicitud->pk_solicitud,
@@ -195,13 +207,13 @@ class SolicitudController extends Controller {
         //
     }
 
-    private function calcular_var($variables){
-        $pesos=[3,5,3,3,5,3,1,1,5,5,5];
+    public function calcular_var($variables){
+        $pesos=[3,5,3,3,5,3,1,1,5,5,5,5];
         $total=39;
         $i;
         $riesgo = 0.0;
-        for ($i = 0; $i < 10; $i++) { 
-            $riesgo = $riesgo + $pesos[$i]*$valores[$i];
+        for ($i = 0; $i < 11; $i++) { 
+            $riesgo = $riesgo + $pesos[$i]*$variables[$i];
         }
         $riesgo=($riesgo/$total)*10;
         return $riesgo;
