@@ -200,7 +200,7 @@ class SolicitudController extends Controller {
     }
 
     //Util para el seeder
-    private function creadorRiesgo($usuario,$solicitud){
+    public function creadorRiesgo($usuario,$solicitud){
         if($usuario->empresa){
             $tipo=0;
             if($edad>1){
