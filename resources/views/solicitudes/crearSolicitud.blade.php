@@ -146,8 +146,8 @@
 		
 	</div>
 	<br>
-	
-					<div class="row">
+				<div id="vide">
+					<div class="row meno">
 							<div class="col-md-2"></div>
 							<div class="col-md-8">
 									<div class="input-group mb-2">
@@ -157,13 +157,14 @@
 															<i class="fab fa-youtube"></i>
 													</span>
 												</div>
-														<input type="text" name="video" class="form-control form-control-sm" placeholder="Ingrese la url de YouTube" id="video" onblur="videop()" value="@eachError('video', $errors) @endeachError">
+														<input type="text" name="videos[0]" class="form-control form-control-sm" placeholder="Ingrese la url de YouTube" id="video" onblur="videop()" value="@eachError('video', $errors) @endeachError">
 
 											</div>
 	
 										
 							</div>
 					</div>
+				</div>
 					<div class="row">
 							<div class="col-md-2"></div>
 							<div class="col-md-8">
@@ -172,13 +173,21 @@
 										<div class="col-md-8">
 											{{-- video --}}
 											<iframe style="display:none" id="videoSalida" width="100%" src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-											<textarea style="display:none" class="form-control form-control-sm" name="descripcion_video" id="descripcion_video" cols="50" rows="3" placeholder="Describe tu foto" value="@eachError('descripcion_video', $errors) @endeachError"></textarea>
+											<textarea style="display:none" class="form-control form-control-sm" name="descripcion_video" id="descripcion_video" cols="50" rows="3" placeholder="Describe tu video" value="@eachError('descripcion_video', $errors) @endeachError"></textarea>
 
 										</div>
 									</div>
 							</div>
 					</div>
-					
+					<div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-4 ">
+                <a class=" btn btn-secondary btn-block  " id="create"><i class="fas fa-plus" style="color: white !important;"></i></a>
+            </div>
+            <div class="col-md-4 ">
+                <a class=" btn btn-secondary btn-block " id="delete"><i class="fas fa-minus" style="color: white !important;"></i></a>
+            </div>
+        </div><br>
 					<div class="row">
 							<div class="col-md-2"></div>
 							<div class="col-md-8">
@@ -198,21 +207,6 @@
 
 <br>
 
-<div class="col-md-2"></div>
-            <div class="col-md-4 mb-2 mx-auto">
-                <a class=" btn btn-info btn-block rounded-0 py-2" style="background-color: #039be5 !important; border-color: #039be5 !important; width: 40%;" id="create"><i class="fas fa-plus" style="color: white !important;"></i></a>
-            </div>
-            <div class="col-md-2"></div>
-            <div class="col-md-4 mb-2 mx-auto">
-                <a class=" btn btn-info btn-block rounded-0 py-2 " style="background-color: #039be5 !important; border-color: #039be5 !important; width: 40%;" id="delete"><i class="fas fa-minus" style="color: white !important;"></i></a>
-            </div>
-<script>
-		$('#create').click(function(){
-		i++;
-		
-    });
-
-</script>
 
 
 
@@ -276,5 +270,20 @@ function videop(){
 	document.getElementById('descripcion_video').style.display = "inline";
 };
 </script>
+<script>
+		$('#create').click(function(){
+        i++;
+        $('#vide').append(
+            '<div class="row meno"><div class="col-md-2"></div><div class="col-md-8"><div class="input-group mb-2">'+
+			'<div class="input-group-prepend"><span class="input-group-text"><i class="fab fa-youtube"></i>'+
+			'</span></div><input type="text" name="videos['+i+']" class="form-control form-control-sm" placeholder="Ingrese la url de YouTube" id="videos" onblur="videop()" value="@eachError('video', $errors) @endeachError">'+
+			'</div></div></div>'
+        );
+    });
 
+		$('#delete').click(function(){
+        $('.meno:last').remove();
+        i--;
+    });
+</script>
 @endsection

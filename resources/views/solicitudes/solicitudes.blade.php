@@ -57,6 +57,35 @@
                         {{$des}}
                     </p>
                     <a href="{{route('solicitudes.show',$item->pk_solicitud)}}" class="btn btn-primary">ver mas</a>
+                    @if ($item->estado=='e')
+                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
+                            Responder
+                          </button>
+                    @endif
+                    
+                          
+                          <!-- Modal -->
+                          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title" id="exampleModalLabel">Información Importante!</h5>
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                </div>
+                                <div class="modal-body">
+                                  Lo sentimos pero su solicitud ha completado con el tiempo requerido ({{$item->tiempo_recaudacion}}) sin alcanzar
+                                  el monto deseado, pero no te preocupes si deseas aceptar ${{$item->monto_juntado}},
+                                  solo tienes que dar clic el boton aceptar de lo contrario, rechazalos.
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Rechazarlos</button>
+                                  <button type="button" class="btn btn-primary">Aceptarlos</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
                 </div>
             </div>
             @if (($key+1)%3 == 0 OR ($key+1) == $num)

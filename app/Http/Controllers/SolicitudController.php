@@ -180,7 +180,6 @@ class SolicitudController extends Controller {
             $m=Multimedia::create([
                 'fk_solicitud' => $solicitud->pk_solicitud,
                 'tipo' => 'foto',
-                'descripcion' => $f->descripcion_foto,
                 'url' => '',
             ]);
             $m->url = SupraController::subirArchivo($request,'solicitud'.$m->pk_multimedia,'foto');
