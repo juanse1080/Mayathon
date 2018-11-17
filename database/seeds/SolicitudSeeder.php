@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Http\Controllers\SolicitudController;
 use App\Solicitud;
+use App\Usuario;
 
 class SolicitudSeeder extends Seeder
 {
@@ -11,16 +13,21 @@ class SolicitudSeeder extends Seeder
      * @return void
      */
     public function run()
-    {
-        Solicitud::create([
+    {   
+        $usuario=Solicitud::where("pk_usuario","1");
+        $usuario->nivel="Doctorado";
+        $usuario->activos=10000000;
+        $usuario->pasivos=5000000;
+        $s=Solicitud::create([
             'fk_usuario' => '1',
-            'titulo' => 'Servidor',
-            'descripcion' => 'Se necesita un buen servidor para redes',
+            'titulo' => 'Servidores nuevos para LaU',
+            'descripcion' => 'Se necesitan unos buenos servidores para las practicas de redes.',
             'categoria' => 'educacion',
             'monto_requerido' => 10000,
             'interes' => '1',
             'tiempo_recaudacion'=>'2018-11-20',
-            'tiempo_devolucion'=>'12'
+            'tiempo_devolucion'=>'12',
           ]);
+        $s->riesgo=SolicitudController::creadorRiesgo($usuario,$s);
     }
 }
