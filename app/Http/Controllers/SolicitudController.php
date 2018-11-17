@@ -14,7 +14,7 @@ class SolicitudController extends Controller
      */
     public function index()
     {
-        //
+        return view('usuarios.solicitudes');
     }
 
     /**
@@ -22,9 +22,8 @@ class SolicitudController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
+    public function create(){
+        return view('usuarios.crearSolicitud');
     }
 
     /**
