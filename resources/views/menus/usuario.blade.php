@@ -16,7 +16,7 @@
 
                 <li class="nav-item @if (Request::path()=="notificaciones") active @endif"><a class="nav-link" href="{{ url('/notificaciones') }}"><i class="fas fa-bell"></i> Notificaciones 
                 @if (!empty(session('noti')) or session('noti')>0)
-                   ( {{session('noti')}} )
+                   <span class="badge badge-pill badge-light">{{session('noti')}}</span>
                 @endif
                 </a></li>
                 

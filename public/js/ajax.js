@@ -40,14 +40,14 @@ function modalConfirm (callback, titulo, mensaje, botones){
         $("#exampleModalCenter").modal('hide');
     });
 }
-function deleteRegistro(ruta, id, row){
+function deleteRegistro(ruta, id, hidden){
     $.ajax({
         type: 'POST',
         url: '/'+ruta+'/'+id,
         data: {_token:$('input[name=_token]').val(), _method:'DELETE'},
         success: function(data) {
-            row.fadeOut();
-            newModal('Acción satisfactoria',data.mensaje, false);
+            hidden.fadeOut();
+            // newModal('Acción satisfactoria',data.mensaje, false);
         },
         error: function(){
             newModal('Error','La accion no pudo llevarse a cabo', false);
@@ -56,15 +56,11 @@ function deleteRegistro(ruta, id, row){
 }
 
 $(document).ready(function(){
-    $('.delete').click(function(){
-        var row = $(this).parents('tr');
-        var ruta = $(this).attr('ruta');
+    $('.close').click(function(){
         var id = $(this).attr('identificador');
-        modalConfirm(function(confirm){
-            if(confirm){
-                deleteRegistro(ruta, id, row)
-            }
-        },'Confirmar','¿Desea Eliminar el registro?',true);
+        var hidden = $('#n'+id);
+        var ruta = $(this).attr('ruta');
+        deleteRegistro(ruta, id, hidden);
     });
 });
 
