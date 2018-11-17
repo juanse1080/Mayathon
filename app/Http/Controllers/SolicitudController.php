@@ -37,22 +37,22 @@ class SolicitudController extends Controller {
         }
         $edad=CalculaEdad(session('datos')["fecha_nacimiento"]);
         if(session('datos')["empresa"]){
-            $tipo=2;
+            $tipo=0;
             if($edad>1){
                 if($edad>3){
-                    $tiempo=1;
+                    $tiempo=0;
                 }else{
-                    $tiempo=2;
+                    $tiempo=1;
                 }
             }else{
-                $tiempo=3;
+                $tiempo=1;
             }
         }else{
-            $tipo=3;
+            $tipo=1;
             if($edad>30 & $edad<60){
-                $tiempo=1;
+                $tiempo=0;
             }else{
-                $tiempo=2;
+                $tiempo=1;
             }
             
         }
@@ -60,9 +60,9 @@ class SolicitudController extends Controller {
             $act=0;
         }else{
             if(session('datos')["activos"]< $request->monto_requerido/2){
-                $act=2;
-            }else{
                 $act=1;
+            }else{
+                $act=0;
             }
             
         }
@@ -71,64 +71,64 @@ class SolicitudController extends Controller {
                 $cat=1;
                 break;
             case "investigacion":
-                $cat=1;
+                $cat=0;
                 break;
             case "arte":
-                $cat=2;
+                $cat=1;
                 break;
             case "empresa":
                 $cat=0;
                 break;
             case "personal":
-                $cat=2;
+                $cat=1;
                 break;
         }
 
 
         if(session('datos')["pasivos"] == 0 or session('datos')["activos"]==0){
-            $pa=2;
-        }else{
             $pa=1;
+        }else{
+            $pa=0;
         }
         if(strlen($request->descripcion)>180){
-            $des=1;
+            $des=0;
         }else{
-            $des=2;
+            $des=1;
         }
         if($request->foto==null){
-            $fot=2;
-        }else{
             $fot=1;
+        }else{
+            $fot=0;
         }
         if($request->video==null){
-            $vid=2;
-        }else{
             $vid=1;
+        }else{
+            $vid=0;
         }
         switch (session('datos')["nivel"]) {
             case "Ninguno":
-                $niv=6;
+                $niv=3;
                 break;
             case "Primaria":
-                $niv=5;
+                $niv=3;
                 break;
             case "Bachiller":
-                $niv=5;
-                break;
-            case "Tecnico":
-                $niv=4;
-                break;
-            case "Tecnologo":
-                $niv=3;
-                break;
-            case "Universitario":
-                $niv=3;
-                break;
-            case "Maestria":
                 $niv=2;
                 break;
-            case "Doctorado":
+            case "Tecnico":
                 $niv=1;
+                break;
+            case "Tecnologo":
+                $niv=1;
+                break;
+            case "Universitario":
+                $niv=0;
+                break;
+            case "Maestria":
+                $niv=0;
+                break;
+            case "Doctorado":
+                $niv=0;
                 break;
             default:
                 $niv=0;
@@ -136,12 +136,12 @@ class SolicitudController extends Controller {
 
         if($request->monto_requerido>1000000){
             if($request->monto_requerido>100000000){
-                $mon=4;
+                $mon=2;
             }else{
                 $mon=1;
             }
         }else{
-            $mon=2;
+            $mon=0;
         }
         $variables = [$tiempo,$tipo,$act,$pa,$pa,$cat,$des,$fot,$vid,$niv,$mon];
         // dd($variables);
@@ -208,14 +208,14 @@ class SolicitudController extends Controller {
     }
 
     public function calcular_var($variables){
-        $pesos=[3,5,3,3,5,3,1,1,5,5,5,5];
-        $total=39;
+        $pesos=[3,3,2,3,2,2,1,1,3,2,3,2];
+        $total=27;
         $i;
         $riesgo = 0.0;
         for ($i = 0; $i < 11; $i++) { 
             $riesgo = $riesgo + $pesos[$i]*$variables[$i];
         }
-        $riesgo=($riesgo/$total)*10;
+        $riesgo=($riesgo/$total);
         return $riesgo;
     }
 }
