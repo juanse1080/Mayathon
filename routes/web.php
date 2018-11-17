@@ -18,3 +18,6 @@ Route::get('/', function () {
 Route::get('/h', function () {
     return "view('welcome')";
 });
+
+/*   RUTAS USUARIOS */
+Route::resource('usuarios/crear','UsuarioController');
