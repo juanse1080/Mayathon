@@ -7,22 +7,18 @@
         <div class="row">
             @csrf
 						{{-- filtro --}}
-            <div class="col-md-4"></div>
-            <div class="col-md-4">
-                <div class="input-group mb-2">
-                    <div class="input-group-prepend">
-                        <span class= "input-group-text">
-                            <i class="fas fa-filter"></i>
-                        </span>
-                    </div>
-                    <input type="text" class="form-control form-control-sm"  id="entradafilter" name="titulo" placeholder="Filtrar Resultados" >
-                    <div class="input-group-append" onclick="">
-                        <span class="input-group-text"><a href="{{url('/solicitudes/crear') }}" role="button">Nueva Solicitud</a></span>
-                    </div>
-                    
-                </div>
-            </div>
-            
+						<div class="col-md-4"></div>
+                        <div class="col-md-4">
+                            <div class="input-group mb-2">
+                                <div class="input-group-prepend">
+                                    <span class= "input-group-text">
+                                        <i class="fas fa-filter"></i>
+                                    </span>
+                                </div>
+                                <input type="text" class="form-control form-control-sm"  id="entradafilter" name="titulo" placeholder="Filtrar Resultados" >
+                            </div>
+                        </div>
+                        <a class="btn btn-success" href="{{url('/solicitudes/crear') }}" role="button">Nueva Solicitud</a>
                         
                     
           </div><br>
