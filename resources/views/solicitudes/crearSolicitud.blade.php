@@ -41,7 +41,7 @@
 								</div>
 								{{-- <input type="text" class="form-control form-control-sm"  id="titulo" name="titulo" placeholder="Titulo Solicitud" value="@eachError('titulo', $errors) @endeachError"> --}}
 
-                                <textarea class="form-control form-control-sm" name="descripcion" id="descripcion" cols="50" rows="5" placeholder="Describe tu Solicitud" value="@eachError('descripcion', $errors) @endeachError"></textarea>
+                                <textarea class="form-control form-control-sm" name="descripcion" id="descripcion" cols="50" rows="5" placeholder="Describe tu Solicitud" >@eachError('descripcion', $errors) @endeachError</textarea>
                                 
                             </div>
                         </div>
@@ -54,13 +54,13 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-list-ol"></i></span>
                                 </div>
-								<select  id="categoria" name="categoria" placeholder="Categoria de la solicitud" class="form-control form-control-sm" value="@eachError('categoria', $errors)@endeachError">
+								<select  id="categoria" name="categoria" placeholder="Categoria de la solicitud" class="form-control form-control-sm" >
 										<option value="">Seleccione una categoria</option>
-										<option value="educacion">Educacion</option>
-										<option value="investigacion">Investigacion</option>
-										<option value="arte">Arte</option>
-										<option value="empresa">Empresa</option>
-										<option value="personal">Personal</option>
+										<option value="educacion" @select('categoria', 'educacion')@endselect >Educacion</option>
+										<option value="investigacion" @select('categoria', 'investigacion')@endselect >Investigacion</option>
+										<option value="arte" @select('categoria', 'arte')@endselect >Arte</option>
+										<option value="empresa" @select('categoria', 'empresa')@endselect >Empresa</option>
+										<option value="personal" @select('categoria', 'personal')@endselect >Personal</option>
 										
 								</select>
 							</div>
@@ -71,7 +71,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-money-check-alt"></i></span>
                                 </div>
-                                <input type="number" id="monto" name="monto_requerido" placeholder="Monto solicitado" class="form-control form-control-sm" value="@eachError('monto', $errors)@endeachError">
+                                <input type="number" id="monto" name="monto_requerido" placeholder="Monto solicitado" class="form-control form-control-sm" value="@eachError('monto_requerido', $errors)@endeachError">
                             </div>
                         </div>
                     </div>
@@ -83,7 +83,7 @@
 									<div class="input-group-prepend">
 										<span class="input-group-text"><i class="fas fa-percentage"></i></i></span>
 									</div>
-									<input type="number" step="any"  id="tasa" name="interes" placeholder="Tasa de Interes" class="form-control form-control-sm" value="@eachError('tasa', $errors)@endeachError">
+									<input type="number" step="any"  id="tasa" name="interes" placeholder="Tasa de Interes" class="form-control form-control-sm" value="@eachError('interes', $errors)@endeachError">
 								</div>
 							</div>
 							{{-- fecha recaudo --}}
@@ -94,7 +94,7 @@
 													<i class="far fa-calendar-alt"> Plazo recaudo</i> 
 												</span>
 											</div>
-											<input type="date" name="tiempo_recaudacion" placeholder="dd/mm/yyyy" class="form-control form-control-sm" value="@eachError('fecha_recaudo', $errors)@endeachError">
+											<input type="date" name="tiempo_recaudacion" placeholder="dd/mm/yyyy" class="form-control form-control-sm" value="@eachError('tiempo_recaudacion', $errors)@endeachError">
 										</div>
 							</div>
 						</div>
@@ -108,13 +108,13 @@
 											<i class="fas fa-donate"></i>
 									</span>
 								</div>
-                                <select  id="tiempo" name="tiempo_devolucion" placeholder="Tiempo para devolucion" class="form-control form-control-sm" value="@eachError('tiempo', $errors)@endeachError">
+                                <select  id="tiempo" name="tiempo_devolucion" placeholder="Tiempo para devolucion" class="form-control form-control-sm" >
 										<option value="">Seleccione plazo de entrega</option>
-										<option value="3">3 meses</option>
-										<option value="6">6 meses</option>
-										<option value="9">9 meses</option>
-										<option value="12">1 año</option>
-										<option value="24">2 años</option>
+										<option value="3" @select('tiempo_devolucion', '3')@endselect >3 meses</option>
+										<option value="6" @select('tiempo_devolucion', '6')@endselect>6 meses</option>
+										<option value="9" @select('tiempo_devolucion', '9')@endselect>9 meses</option>
+										<option value="12" @select('tiempo_devolucion', '12')@endselect>1 año</option>
+										<option value="24" @select('tiempo_devolucion', '24')@endselect>2 años</option>
 										
 								</select>
                             </div>
@@ -129,7 +129,7 @@
 													<i class="fas fa-file-image input-group-text"></i>
 												</div>
 												<div class="custom-file">
-													<input type="file" name="foto" class="custom-file-input form-group" id="customFileLang" lang="es">
+													<input type="file" name="foto" class="custom-file-input form-group" id="customFileLang" lang="es" value="@eachError('foto', $errors) @endeachError">
 													<label id="file" class="custom-file-label" for="customFileLang">Sube una foto</label>
 												</div>
 											</div>
@@ -162,7 +162,7 @@
 															<i class="fab fa-youtube"></i>
 													</span>
 												</div>
-														<input type="text" name="video" class="form-control form-control-sm" placeholder="Ingrese la url despues de https://www.youtube.com/" id="video" onblur="videop()">
+														<input type="text" name="video" class="form-control form-control-sm" placeholder="Ingrese la url despues de https://www.youtube.com/" id="video" onblur="videop()" value="@eachError('video', $errors) @endeachError">
 
 											</div>
 	
