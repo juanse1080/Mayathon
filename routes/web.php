@@ -16,7 +16,7 @@ Route::get('/', function () {
 });
 
 Route::get('/login', function () {
-    return "view('inicio.login')";
+    return view('inicio.login');
 });
 
 /*   RUTAS USUARIOS */
