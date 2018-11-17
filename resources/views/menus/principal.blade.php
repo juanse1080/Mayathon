@@ -11,28 +11,14 @@
         <li class="nav-item @if (Request::path()=="/") active @endif ">
           <a class="nav-link " href="{{ url('/') }}"> <i class="fas fa-home"></i> Inicio</a>
         </li>
+        <li class="nav-item @if (Request::path()=="nosotros") active @endif ">
+          <a class="nav-link " href="{{ url('/nosotros') }}"> <i class="fas fa-users"></i> Nosotros</a>
+        </li>
+        <li class="nav-item @if (Request::path()=="contacto") active @endif ">
+          <a class="nav-link " href="{{ url('/contacto') }}"> <i class="fas fa-headset"></i> Contacto</a>
+        </li>
         <li class="nav-item @if (Request::path()=="login") active @endif ">
-          <a class="nav-link" href="
-          @auth
-            @switch(session('role'))
-                @case('estudiante')
-                    {{ url('/estudiantes/principal') }}" ><i class="fas fa-sign-in-alt"></i> {{ucwords(session('user')['nombre'])}}</a>
-                    @break
-            
-                @case('administrador')
-                    {{ url('/empleados/principal') }}" ><i class="fas fa-sign-in-alt"></i> {{ucwords(session('user')['nombre'])}}</a>
-                    @break
-
-                @case('profesor')
-                    {{ url('/empleados/principal') }}" ><i class="fas fa-sign-in-alt"></i> {{ucwords(session('user')['nombre'])}}</a>
-                    @break
-                @default
-                    {{ url('/login') }}"> <i class="fas fa-sign-in-alt"></i> Login </a>
-                @endswitch
-          @endauth
-          @guest
-            {{ url('/login') }}"> <i class="fas fa-sign-in-alt"></i> Login </a>
-          @endguest
+          <a class="nav-link" href="{{ url('/login') }}"> <i class="fas fa-sign-in-alt"></i> Login </a>
         </li>
       </ul>
     </div>
