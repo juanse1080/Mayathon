@@ -82,7 +82,7 @@
                                 </div>
                                 <div class="modal-footer">
                                   <button type="button" identificador="{{$item->pk_solicitud}}" respuesta ="a" class="clos btn btn-secondary" data-dismiss="modal">Rechazarlos</button>
-                                  <button type="button" identificador="{{$item->pk_solicitud}}" respuesta ="r" class="clos btn btn-primary">Aceptarlos</button>
+                                  <button type="button" identificador="{{$item->pk_solicitud}}" respuesta ="r" class="clos btn btn-primary" data-dismiss="modal">Aceptarlos</button>
                                 </div>
                               </div>
                             </div>
