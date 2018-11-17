@@ -14,7 +14,11 @@
                 <li class="nav-item @if (Request::path()=="solicitudes") active @endif"><a class="nav-link" href="{{ url('/solicitudes') }}"><i class="fas fa-hand-holding-usd"></i> Mis Solicitudes</a></li>
                 <li class="nav-item @if (Request::path()=="inversiones") active @endif"><a class="nav-link" href="{{ url('/inversiones') }}"><i class="fas fa-money-bill-wave"></i> Mis Inversiones</a></li>
 
-                <li class="nav-item @if (Request::path()=="notificaciones") active @endif"><a class="nav-link" href="{{ url('/notificaciones') }}"><i class="fas fa-bell"></i> Notificaciones </a></li>
+                <li class="nav-item @if (Request::path()=="notificaciones") active @endif"><a class="nav-link" href="{{ url('/notificaciones') }}"><i class="fas fa-bell"></i> Notificaciones 
+                @if (!empty(session('noti')))
+                   ( {{session('noti')}} )
+                @endif
+                </a></li>
                 
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url('/logout') }}"> <i class="fas fa-sign-out-alt"></i> Salir </a>

@@ -14,7 +14,8 @@ class NotificacionController extends Controller
      */
     public function index()
     {
-        //
+        $notificaciones = Notificacion::where('notificacion.fk_usuario',session('datos')['pk_usuario'])->get();
+        return view('notificaciones.verNotificacion', ['notificaciones' => $notificaciones, 'num' => count($notificaciones)]);
     }
 
     /**
