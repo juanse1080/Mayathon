@@ -9,7 +9,7 @@
         <li class="list-group-item border-dark bg-light"><h5 class="card-title text-center"><i class="fas fa-user"></i> {{ucwords(session('datos')['nombre'])}} {{ucwords(session('datos')['apellido'])}}</h5></li>
         <li class="list-group-item border-dark bg-light"><h5 class="card-title text-center"><i class="fas fa-hashtag"></i> Id Usuario {{ucwords(session('datos')['pk_usuario'])}}</h5></li>
         <li class="list-group-item border-dark bg-light"><h5 class="card-title text-center"><i class="fas fa-envelope"></i> {{ucwords(session('datos')['correo'])}}</h5></li>
-        <li class="list-group-item border-dark bg-light"><h5 class="card-title text-center"><i class="fas fa-hashtag"></i> Id Usuario {{ucwords(session('datos')['pk_usuario'])}}</h5></li>
+        <li class="list-group-item border-dark bg-light"><h5 class="card-title text-center"><i class="far fa-calendar-alt"></i> Fecha {{ucwords(session('datos')['fecha_nacimiento'])}}</h5></li>
     </ul>
     
 </div>

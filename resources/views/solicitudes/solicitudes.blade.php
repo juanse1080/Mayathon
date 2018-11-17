@@ -16,7 +16,10 @@
                                 </div>
                                 <input type="text" class="form-control form-control-sm"  id="entradafilter" name="titulo" placeholder="Filtrar Resultados" >
                             </div>
-						</div>
+                        </div>
+                        <a class="btn btn-success" href="{{url('/solicitudes/crear') }}" role="button">Nueva Solicitud</a>
+                        
+                    
           </div><br>
           <div class="contenidobusqueda" id="myTable">
         @foreach ($solicitudes as $key => $item)

@@ -3,6 +3,7 @@
 @section('contenedor_home')
 @include('error.error')
 <br>
+<script>var i=0</script>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-10">
@@ -120,6 +121,7 @@
                             </div>
                         </div>
 					</div>
+			<div id="imagenes">
 					<div class="row">
 							<div class="col-md-2"></div>
 							<div class="col-md-8">
@@ -129,29 +131,22 @@
 													<i class="fas fa-file-image input-group-text"></i>
 												</div>
 												<div class="custom-file">
-													<input type="file" name="foto" class="custom-file-input form-group" id="customFileLang" lang="es" value="@eachError('foto', $errors) @endeachError">
-													<label id="file" class="custom-file-label" for="customFileLang">Sube una foto</label>
+													<input type="file" id="fotos" name="fotos[]" multiple  class="custom-file-input form-group"  lang="es" value="@eachError('foto', $errors) @endeachError">
+													<label id="file" class="custom-file-label" for="customFileLang">Sube tus fotos</label>
 												</div>
 											</div>
 	
 										
 							</div>
 					</div>
-					<div class="row">
-							<div class="col-md-2"></div>
-							<div class="col-md-8">
-								<div class="row">
-										<div class="col-md-2"></div>
-										<div class="col-md-8">
-											{{-- Foto --}}
-											<img id="imgSalida" width="100%" style="display:none" src="" />
-											<textarea style="display:none" class="form-control form-control-sm" name="descripcion_foto" id="descripcion_foto" cols="50" rows="3" placeholder="Describe tu foto" value="@eachError('descripcion_foto', $errors) @endeachError"></textarea>
-
-										</div>
-									</div>
-							</div>
-					</div>
-
+	</div>
+	<div class="row">
+		<div class="col-md-2"></div>
+		<div class="col-md-8"><output id="list"></output></div>
+		
+	</div>
+	<br>
+	
 					<div class="row">
 							<div class="col-md-2"></div>
 							<div class="col-md-8">
@@ -162,7 +157,7 @@
 															<i class="fab fa-youtube"></i>
 													</span>
 												</div>
-														<input type="text" name="video" class="form-control form-control-sm" placeholder="Ingrese la url despues de https://www.youtube.com/watch?v=" id="video" onblur="videop()" value="@eachError('video', $errors) @endeachError">
+														<input type="text" name="video" class="form-control form-control-sm" placeholder="Ingrese la url de YouTube" id="video" onblur="videop()" value="@eachError('video', $errors) @endeachError">
 
 											</div>
 	
@@ -203,6 +198,74 @@
 
 <br>
 
+<div class="col-md-2"></div>
+            <div class="col-md-4 mb-2 mx-auto">
+                <a class=" btn btn-info btn-block rounded-0 py-2" style="background-color: #039be5 !important; border-color: #039be5 !important; width: 40%;" id="create"><i class="fas fa-plus" style="color: white !important;"></i></a>
+            </div>
+            <div class="col-md-2"></div>
+            <div class="col-md-4 mb-2 mx-auto">
+                <a class=" btn btn-info btn-block rounded-0 py-2 " style="background-color: #039be5 !important; border-color: #039be5 !important; width: 40%;" id="delete"><i class="fas fa-minus" style="color: white !important;"></i></a>
+            </div>
+<script>
+		$('#create').click(function(){
+		i++;
+		
+    });
+
+</script>
+
+
+
+
+
+
+<style>
+  .thumb {
+    height: 85px;
+    border: 1px solid #000;
+    margin: 10px 5px 0 0;
+  }
+</style>
+
+
+
+<script>
+  function handleFileSelect(evt) {
+    var fotos = evt.target.files; // FileList object
+
+    // Loop through the FileList and render image files as thumbnails.
+    for (var i = 0, f; f = fotos[i]; i++) {
+
+      // Only process image files.
+      if (!f.type.match('image.*')) {
+        continue;
+      }
+
+      var reader = new FileReader();
+
+      // Closure to capture the file information.
+      reader.onload = (function(theFile) {
+        return function(e) {
+          // Render thumbnail.
+          var span = document.createElement('span');
+          span.innerHTML = ['<img class="thumb" src="', e.target.result,
+                            '" title="', escape(theFile.name), '"/>'].join('');
+          document.getElementById('list').insertBefore(span, null);
+        };
+      })(f);
+
+      // Read in the image file as a data URL.
+      reader.readAsDataURL(f);
+    }
+  }
+
+  document.getElementById('fotos').addEventListener('change', handleFileSelect, false);
+</script>
+
+
+
+
+
 <script>
 function videop(){
 	result = document.getElementById('videoSalida');
@@ -212,37 +275,6 @@ function videop(){
 	result.src = inicio+val;
 	document.getElementById('descripcion_video').style.display = "inline";
 };
-//carga imagen
-$(window).on('load', function(){
-
-$(function() {
- $('#customFileLang').change(function(e) {
-	 addImage(e); 
-	});
-
-
-
-	function addImage(e){
-	 var file = e.target.files[0],
-	 imageType = /image.*/;
-   
-	 if (!file.type.match(imageType))
-	  return;
- 
-	 var reader = new FileReader();
-	 reader.onload = fileOnload;
-	 reader.readAsDataURL(file);
-	}
- 
-	function fileOnload(e) {
-	 var result=e.target.result;
-	 document.getElementById('imgSalida').style.display = "inline";
-	 document.getElementById('descripcion_foto').style.display = "inline";
-	 $('#imgSalida').attr("src",result);
-	}
-   });
- });
-
 </script>
 
 @endsection
