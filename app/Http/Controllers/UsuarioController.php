@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Usuario;
 use App\Http\Requests\UsuarioStore;
+use App\Http\Requests\UsuarioSolicitanteEdit;
 
 class UsuarioController extends Controller
 {
@@ -40,7 +41,7 @@ class UsuarioController extends Controller
         $usuario = (new Usuario)->fill($request->except("password2"));
         $usuario->password = Hash::make($request->password);
         if($usuario->save()){
-            return "Usuario creado";
+            return redirect("/login");
         }else{
             return back()->withInput()->with('false', 'Algo no salio bien, intente nuevamente');
         }
@@ -70,7 +71,18 @@ class UsuarioController extends Controller
 
     public function editSolicitante(){
         $user=session('datos');
-        dd($user);
+        if($user["nivel"]==null){
+            return view('usuarios.editUsuarioSolicitante');
+        }
+    }
+
+    public function updateSolicitante(UsuarioSolicitanteEdit $request){
+        $user=session('datos');
+        $usuario=Usuario::where("pk_usuario",$user["pk_usuario"])->get()[0];
+        $usuario->fill($request->all());
+        if(!$usuario->save()){
+            return back()->withInput()->with('false', 'Algo no salio bien, intente nuevamente');
+        }
     }
     /**
      * Update the specified resource in storage.

@@ -1,7 +1,7 @@
 
-@extends('contenedores.home')
-@section('titulo','Home')
-@section('contenedor_home')
+@extends('contenedores.principal')
+@section('titulo','Registro')
+@section('contenedor_principal')
 @include('error.error')
 <br>
 <div class="container">
@@ -82,7 +82,7 @@
                             <div class="input-group mb-2">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">
-                                        <i class="far fa-calendar-alt"></i>  <i id="titlefecha" style="padding-left:7px;font-size:0.7rem !important;"> Fecha nacimiento</i>
+                                        <i class="far fa-calendar-alt" id="titlefecha"> Fecha nacimiento</i>
                                     </span>
                                 </div>
                                 <input type="date" name="fecha_nacimiento" placeholder="dd/mm/yyyy" class="form-control form-control-sm" value="@eachError('fecha_nacimiento', $errors)@endeachError">
@@ -132,13 +132,13 @@
                 cedula.placeholder="Nit";
                 nombre.placeholder="Nombre de la empresa";
                 apellido.disabled=true;
-                fecha.innerHTML="Fecha de creacion";
+                fecha.innerHTML=" Fecha de creacion";
                 
             }else{
                 cedula.placeholder="Cedula";
                 nombre.placeholder="Nombres";
                 apellido.disabled=false;
-                fecha.innerHTML="Fecha nacimiento";
+                fecha.innerHTML=" Fecha nacimiento";
             }
         }
         function confirmar(password2, n){

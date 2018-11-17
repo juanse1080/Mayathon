@@ -22,7 +22,12 @@
             <div class="form-check">
               <button type="submit" class="btn btn-login float-right">Iniciar Sesión</button>
             </div>
-
+            <br><br>
+            <div class="form-check ">
+                    <a class="float-right" href="/usuarios/crear">Registrarse</a>
+                </div>
+            </div>
+            
           </form>
       </div>
       <div class="col-md-8 banner-sec"></div>
