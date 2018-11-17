@@ -16,7 +16,13 @@
           </thead>
           <tbody>
               @if (empty($inversiones[0]))
-                <h1 class="text-center">No hay inversiones</h1>
+                <tr>
+                    <td colspan="4">
+                        <br>
+                        <h4 class="text-center">No hay inversiones</h4>
+                        <br>
+                    </td>   
+                </tr>
               @else
                 @foreach ($inversiones as $i)
                     <tr onclick="location.href='/solicitudes/{{$i->fk_solicitud}}';">
