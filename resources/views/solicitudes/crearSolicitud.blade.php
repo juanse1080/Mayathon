@@ -173,7 +173,7 @@
 										<div class="col-md-8">
 											{{-- video --}}
 											<iframe style="display:none" id="videoSalida" width="100%" src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-											<textarea style="display:none" class="form-control form-control-sm" name="descripcion_video" id="descripcion_video" cols="50" rows="3" placeholder="Describe tu foto" value="@eachError('descripcion_video', $errors) @endeachError"></textarea>
+											<textarea style="display:none" class="form-control form-control-sm" name="descripcion_video" id="descripcion_video" cols="50" rows="3" placeholder="Describe tu video" value="@eachError('descripcion_video', $errors) @endeachError"></textarea>
 
 										</div>
 									</div>
