@@ -9,7 +9,7 @@
         <div class="col-md-2"></div>
         <div class="col-md-8">
             <br><h2 class="text-center">Sus Notificaciones</h2> <br>  
-            @if (!empty($notificaciones))
+            @if (!empty($notificaciones[0]))
                 @foreach ($notificaciones as $i => $noti)
                     @if ($noti->estado==0)
                         <div class="card mt-3">
