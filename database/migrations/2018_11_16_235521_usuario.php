@@ -11,14 +11,14 @@ class Usuario extends Migration {
             $table->increments('pk_usuario');
             $table->string('nombre');
             $table->string('apellido')->nullable();
-            $table->integer('password');
+            $table->string('password');
             $table->string('correo');
             $table->integer('cedula')->unique();
             $table->date('fecha_nacimiento');
-            $table->string('nivel');
+            $table->string('nivel')->nullable();
             $table->integer('pasivos')->nullable();
             $table->integer('activos')->nullable();
-            $table->boolean('empresa')->nullable();
+            $table->boolean('empresa')->default(false);
             $table->timestamps();
         });
 
@@ -69,5 +69,9 @@ class Usuario extends Migration {
     public function down()
     {
         Schema::dropIfExists('usuario');
+        Schema::dropIfExists('solicitud');
+        Schema::dropIfExists('multimedia');
+        Schema::dropIfExists('inversion');
+        Schema::dropIfExists('notificacion');
     }
 }

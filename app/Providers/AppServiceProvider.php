@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Route;
 
 class AppServiceProvider extends ServiceProvider
@@ -14,6 +15,17 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Blade::if('eachError', function ($campo, $errors) {
+            if(!$errors->get($campo)){
+                echo old($campo);
+            }
+        });
+
+        Blade::if('select', function($campo, $comparacion){
+            if(old($campo) == $comparacion){
+                echo "selected";
+            }
+        });
         Route::resourceVerbs([
             'create' => 'crear',
             'edit' => 'editar'
