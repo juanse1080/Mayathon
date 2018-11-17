@@ -1,7 +1,7 @@
 <!-- Menu principal para el usuario-->
 <nav class="navbar navbar-expand-lg navbar-dark  lead" style="background-color: #1e88e5;">
         <a class="navbar-brand" href="{{ url('/') }}">
-            <i class="pacifico">My Lend</i>
+            <i class="pacifico">My Lend</i> &nbsp;<i class="fas fa-handshake fa-lg"></i>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
