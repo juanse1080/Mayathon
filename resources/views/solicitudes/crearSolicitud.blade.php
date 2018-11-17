@@ -71,7 +71,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-money-check-alt"></i></span>
                                 </div>
-                                <input type="number" id="monto" name="monto" placeholder="Monto solicitado" class="form-control form-control-sm" value="@eachError('monto', $errors)@endeachError">
+                                <input type="number" id="monto" name="monto_requerido" placeholder="Monto solicitado" class="form-control form-control-sm" value="@eachError('monto', $errors)@endeachError">
                             </div>
                         </div>
                     </div>
@@ -83,7 +83,7 @@
 									<div class="input-group-prepend">
 										<span class="input-group-text"><i class="fas fa-percentage"></i></i></span>
 									</div>
-									<input type="number" step="any"  id="tasa" name="tasa" placeholder="Tasa de Interes" class="form-control form-control-sm" value="@eachError('tasa', $errors)@endeachError">
+									<input type="number" step="any"  id="tasa" name="interes" placeholder="Tasa de Interes" class="form-control form-control-sm" value="@eachError('tasa', $errors)@endeachError">
 								</div>
 							</div>
 							{{-- fecha recaudo --}}
@@ -91,10 +91,10 @@
 								<div class="input-group mb-2">
 										<div class="input-group-prepend">
 												<span class="input-group-text">
-													<i class="far fa-calendar-alt"> Plazo</i> 
+													<i class="far fa-calendar-alt"> Plazo recaudo</i> 
 												</span>
 											</div>
-											<input type="date" name="fecha_recaudo" placeholder="dd/mm/yyyy" class="form-control form-control-sm" value="@eachError('fecha_recaudo', $errors)@endeachError">
+											<input type="date" name="tiempo_recaudacion" placeholder="dd/mm/yyyy" class="form-control form-control-sm" value="@eachError('fecha_recaudo', $errors)@endeachError">
 										</div>
 							</div>
 						</div>
@@ -108,12 +108,13 @@
 											<i class="fas fa-donate"></i>
 									</span>
 								</div>
-                                <select  id="tiempo" name="tiempo" placeholder="Tiempo para devolucion" class="form-control form-control-sm" value="@eachError('tiempo', $errors)@endeachError">
+                                <select  id="tiempo" name="tiempo_devolucion" placeholder="Tiempo para devolucion" class="form-control form-control-sm" value="@eachError('tiempo', $errors)@endeachError">
 										<option value="">Seleccione plazo de entrega</option>
 										<option value="3">3 meses</option>
 										<option value="6">6 meses</option>
 										<option value="9">9 meses</option>
 										<option value="12">1 año</option>
+										<option value="24">2 años</option>
 										
 								</select>
                             </div>

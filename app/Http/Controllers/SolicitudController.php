@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\SolicitudStoreController;
+use App\Http\Controllers\SupraController;
 use App\Solicitud;
 
 class SolicitudController extends Controller
@@ -33,7 +35,10 @@ class SolicitudController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(SolicitudStoreController $request){
-        $solicitud = (new Solicitud)->fill(SupraController::minuscula($request->all()));
+        $solicitud = (new Solicitud)->fill($request->all());
+        $solicitud->fk_usuario= session('datos')["pk_usuario"];
+        $guarda=$solicitud->save();
+        dd($guarda);
         
     }
 
