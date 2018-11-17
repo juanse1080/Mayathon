@@ -2,13 +2,15 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
-class Usuario extends Model
-{
+class Usuario extends Authenticatable {
+
+    use Notifiable;
     protected $table = 'usuario';
     protected $primaryKey = 'pk_usuario';
-    protected $fillable = ['nombres','apellidos','correo','password','cedula','fecha_nacimiento','nivel','pasivos','activos','empresa'];
+    protected $fillable = ['nombre','apellido','correo','password','cedula','fecha_nacimiento','nivel','pasivos','activos','empresa'];
 
     public function session(){
         return $this->attributes;

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use App\Usuario;
+use App\Http\Requests\UsuarioStore;
 
 class UsuarioController extends Controller
 {
@@ -33,9 +35,15 @@ class UsuarioController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(UsuarioStoreController $request)
+    public function store(UsuarioStore $request)
     {
-        
+        $usuario = (new Usuario)->fill($request->except("password2"));
+        $usuario->password = Hash::make($request->password);
+        if($usuario->save()){
+            return "Usuario creado";
+        }else{
+            return back()->withInput()->with('false', 'Algo no salio bien, intente nuevamente');
+        }
     }
 
     /**
@@ -60,6 +68,10 @@ class UsuarioController extends Controller
         //
     }
 
+    public function editSolicitante(){
+        $user=session('datos');
+        dd($user);
+    }
     /**
      * Update the specified resource in storage.
      *

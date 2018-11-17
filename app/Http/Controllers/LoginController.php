@@ -29,7 +29,7 @@ class LoginController extends Controller{
     /* Este metodo verifica el login, ademas de esto, crea una variable de session con los datos 
        del usuario autenticado */
     private function auth($credenciales, $ruta){
-        dd($credenciales);
+        // dd($credenciales);
         $auth = Auth::attempt($credenciales);
         if($auth){
             session(['datos'=> Auth::user()->session()]);
