@@ -171,19 +171,20 @@ class SolicitudController extends Controller {
         $solicitud->riesgo=$this->calcular_var($variables);
         // dd($solicitud);
         $solicitud->save();
-        Multimedia::create([
+        $m=Multimedia::create([
             'fk_solicitud' => $solicitud->pk_solicitud,
             'tipo' => 'foto',
             'descripcion' => $request->descripcion_foto,
             'url' => '',
         ]);
-        $m->url = SupraController::subirArchivo($request,'solicitud'.$multimedia->pk_multimedia,'foto');
+        $m->url = SupraController::subirArchivo($request,'solicitud'.$m->pk_multimedia,'foto');
         $m->save();
+        list($inutil,$IDvideo)=explode("=",$request->video);
         Multimedia::create([
             'fk_solicitud' => $solicitud->pk_solicitud,
             'tipo' => 'video',
             'descripcion' => $request->descripcion_video,
-            'url' => $request->video,
+            'url' => $IDvideo,
         ]);        
     }
 
