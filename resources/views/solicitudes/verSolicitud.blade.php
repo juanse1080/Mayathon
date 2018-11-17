@@ -26,9 +26,9 @@
             @foreach ( $fotos as $i=>$m )
             <div class=" carousel-item {{($i==0)?'active':''}}">
                 <img src="{{asset($m->url)}}" alt=""  height="500">
-                <div class="carousel-caption " style="padding-left:15px;background-color:black;opacity: 0.5;border-radius:10px;">
+                {{-- <div class="carousel-caption " style="padding-left:15px;background-color:black;opacity: 0.5;border-radius:10px;">
                     Descripción: {{$m->descripcion}}
-                </div>
+                </div> --}}
 
             </div>
             @endforeach
@@ -55,6 +55,17 @@
                         <div class="row">
                             <div class="col-md-8 bottom-aligned">
                                     <h5>Monto recaudado</h5>
+                                    <small>Estado: 
+                                    @if ($solicitud->estado=="i")
+                                        {{"Indefinido"}}
+                                    @else
+                                        @if ($solicitud->estado=="r")
+                                            {{"Rechazado"}}
+                                        @else
+                                            {{"Aceptado"}}
+                                        @endif
+                                    @endif    
+                                    </small>  
                             </div>
                             <div class="col-md-4">
                                     <form enctype="multipart/form-data" action="{{ url('/inversiones/crear') }}" method = "POST">
