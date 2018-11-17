@@ -25,7 +25,7 @@
                                     </span>
                                 </div>
                                 
-                                <select class="custom-select custom-select-sm" name="empresa" id="empresa" onchange="desactivar(this.id)">
+                                <select class="custom-select custom-select-sm" name="empresa" id="empresa" onchange="desactivar(this)">
                                     <option @select('role', '0') @endselect value="0">Persona Natural</option>
                                     <option @select('role', '1') @endselect value="1">Persona Juridica</option>
                                 </select>
@@ -76,48 +76,15 @@
                                 <input type="email" id="correo" name="correo" placeholder="E-mail" class="form-control form-control-sm" value="@eachError('correo', $errors)@endeachError">
                             </div>
                         </div>
-                        {{-- direccion --}}
+                        {{-- fecha de nacimiento/creacion --}}
                         <div class="col-md-6">
                             <div class="input-group mb-2">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fas fa-map-marked-alt"></i></span>
-                                </div>
-                                <input type="text" id="direccion" name="direccion" placeholder="Dirección" class="form-control form-control-sm" value="@eachError('direccion', $errors)@endeachError">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        {{-- titulo --}}
-                        <div class="col-md-6">
-                            <div class="input-group mb-2">
-                                <div class="input-group-prepend">
-                                    <span class= "input-group-text">
-                                        <i class="fas fa-user-graduate"></i>
+                                    <span class="input-group-text">
+                                        <i class="far fa-calendar-alt"></i>  <i id="titlefecha" style="padding-left:7px;font-size:0.7rem !important;"> Fecha nacimiento</i>
                                     </span>
                                 </div>
-                                <input type="text" id="titulo" name="titulo" placeholder="Titulo" class="form-control form-control-sm" value="@eachError('titulo', $errors)@endeachError">
-                            </div>
-                        </div>
-                        {{-- director --}}
-                        <div class="col-md-6">
-                            <div class="input-group mb-2">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fas fa-user-check"></i></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="input-group mb-2">
-                            {{-- Foto --}}
-                                <div class="input-group-prepend" style="height: calc(1.8125rem + 2px); font-size: .875rem;">
-                                    <i class="fas fa-file-image input-group-text"></i>
-                                </div>
-                                <div class="custom-file">
-                                    <input type="file" name="foto" class="custom-file-input form-group" id="customFileLang" lang="es">
-                                    <label id="file" class="custom-file-label" for="customFileLang">Sube una foto</label>
-                                </div>
+                                <input type="date" name="fecha_nacimiento" placeholder="dd/mm/yyyy" class="form-control form-control-sm" value="@eachError('fecha_nacimiento', $errors)@endeachError">
                             </div>
                         </div>
                     </div>
@@ -132,19 +99,22 @@
 </div>
 <br>
 <script>
-        function desactivar(p1){
-            var s1 = document.getElementById(p1);
+        function desactivar(s1){
             var cedula = document.getElementById("cedula");
             var nombre = document.getElementById("nombre");
             var apellido = document.getElementById("apellido");
+            var fecha = document.getElementById("titlefecha");
             if(s1.value=='1'){
                 cedula.placeholder="Nit";
                 nombre.placeholder="Nombre de la empresa";
                 apellido.disabled=true;
+                fecha.innerHTML="Fecha de creacion";
+                
             }else{
                 cedula.placeholder="Cedula";
                 nombre.placeholder="Nombres";
                 apellido.disabled=false;
+                fecha.innerHTML="Fecha nacimiento";
             }
         }
     </script>
