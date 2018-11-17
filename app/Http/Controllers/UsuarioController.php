@@ -41,6 +41,7 @@ class UsuarioController extends Controller
     {
         $usuario = (new Usuario)->fill($request->except("password2"));
         $usuario->password = Hash::make($request->password);
+        // dd($usuario);
         if($usuario->save()){
             return redirect("/login");
         }else{

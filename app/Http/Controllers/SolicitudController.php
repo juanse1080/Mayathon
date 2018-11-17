@@ -13,6 +13,7 @@ class SolicitudController extends Controller {
 
     public function index(){
         $solicitudes = Solicitud::where('solicitud.fk_usuario',session('datos')['pk_usuario'])->get();
+        // dd($solicitudes);
         $fotos = [];
         foreach ($solicitudes as $key => $value) {
             $fotos[$key] = [];
@@ -52,7 +53,13 @@ class SolicitudController extends Controller {
     }
 
     public function store(SolicitudStoreController $request){
+        // dd($request->fotos);
         $solicitud = (new Solicitud)->fill($request->all());
+        if ($request->tiempo_recaudacion < date('Y-m-d')) {
+            $solicitud->estado = 'e';
+        }else{
+            $solicitud->estado = 'i';
+        }
         $solicitud->fk_usuario= session('datos')["pk_usuario"];
         function CalculaEdad( $fecha ) {
             list($Y,$m,$d) = explode("-",$fecha);
@@ -156,7 +163,7 @@ class SolicitudController extends Controller {
             default:
                 $niv=0;
         }
-
+        // dd($request->all());
         if($request->monto_requerido>1000000){
             if($request->monto_requerido>100000000){
                 $mon=2;
@@ -180,14 +187,17 @@ class SolicitudController extends Controller {
             $m->url = SupraController::subirArchivo($f,'solicitud'.$m->pk_multimedia,'foto');
             $m->save();
         }
+        // dd($request->videos);
         foreach ($request->videos as $v) {
-            list($inutil,$IDvideo)=explode("=",$v);
-            Multimedia::create([
-                'fk_solicitud' => $solicitud->pk_solicitud,
-                'tipo' => 'video',
-                'descripcion' => $request->descripcion_video,
-                'url' => $IDvideo,
-            ]);
+            if($v != null){
+                list($inutil,$IDvideo)=explode("=",$v);
+                Multimedia::create([
+                    'fk_solicitud' => $solicitud->pk_solicitud,
+                    'tipo' => 'video',
+                    'descripcion' => $solicitud->descripcion_video,
+                    'url' => $IDvideo,
+                ]);
+            }
         }    
     }
 
@@ -320,6 +330,17 @@ class SolicitudController extends Controller {
         
     }
 
+    public function confirmacion(request $request, $id){
+        if($request->ajax()){
+            $notificaciones = Solicitud::where('pk_solicitud',$id)->where('fk_solicitud',session('datos')['pk_usuario'])->get()[0];
+            if(count($notificaciones) == 1){
+                return response()->json([
+                    'mes' => count($notificaciones),
+                ]);
+            }
+            
+        }
+    }
     /**
      * Show the form for editing the specified resource.
      *

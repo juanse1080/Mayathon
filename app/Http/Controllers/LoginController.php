@@ -19,7 +19,7 @@ class LoginController extends Controller{
     }
 
     public function authenticate(Request $request){
-        return $this->auth(["pk_usuario" => $request->username, "password" => $request->password], '/home');
+        return $this->auth(["cedula" => $request->username, "password" => $request->password], '/home');
     }
 
     public function logout(){
