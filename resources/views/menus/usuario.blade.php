@@ -19,6 +19,7 @@
                    <span class="badge badge-pill badge-light">{{session('noti')}}</span>
                 @endif
                 </a></li>
+                <li class="nav-item @if (Request::path()=="perfil") active @endif"><a class="nav-link" href="{{ url('/perfil') }}"><i class="fas fa-user-tie"></i> Perfil</a></li>
                 
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url('/logout') }}"> <i class="fas fa-sign-out-alt"></i> Salir </a>

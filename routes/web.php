@@ -28,6 +28,9 @@ Route::resource('/usuarios','UsuarioController');
 Route::resource('/notificaciones', 'NotificacionController');
 Route::get('/usuarios/solicitante/edit', 'UsuarioController@editSolicitante');
 Route::post('/usuarios/solicitante/', 'UsuarioController@updateSolicitante');
+Route::get('/perfil', function () {
+    return view('inicio.perfil');
+});
 
 //   RUTAS SOLICITUDES
 Route::resource('/solicitudes','SolicitudController');
