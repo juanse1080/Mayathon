@@ -3,26 +3,49 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\InversionStore;
 use App\Inversion;
 use App\Solicitud;
 
 class InversionController extends Controller {
 
     public function index(){
-        $solicitudes = new Solicitud;
-        $solicitudes = $solicitudes->where('estado', true)->get();
-        dd($solicitudes);
-        // $inversiones = new Inversion;
-        // $inversiones = $inversiones->where('fk_usuario',session('datos')['pk_usuario'])->get();
-        // dd($inversiones);
+        $inversiones = Inversion::where('fk_usuario',session('datos')['pk_usuario'])->get();
+        dd($inversiones);
     }
 
     public function create(Request $request){
-        dd($request);
+        $solicitud=Solicitud::select("pk_solicitud","titulo")->where("pk_solicitud",$request->fk_solicitud)->get()[0];
+        return view("inversiones.crearInversion",compact('solicitud'));
     }
 
-    public function store(Request $request,$fk){
-        //
+    public function store(InversionStore $request){
+        $solicitud=Solicitud::where("pk_solicitud",$request->fk_solicitud)->get();
+        if(empty($solicitud[0])){
+            return back()->withInput()->with('false', 'La solucitud escogida no existe.');
+        }else{
+            $solicitud=$solicitud[0];
+            if(($solicitud->monto_juntado+$request->monto) <= $solicitud->monto_requerido ){
+                $inversion = (new Inversion)->fill($request->all());
+                $inversion->fk_usuario=session('datos')['pk_usuario'];
+                $solicitud->monto_juntado=$solicitud->monto_juntado+$request->monto;
+                if($inversion->save() and $solicitud->save()){
+                    return redirect("/inversiones");
+                    // return "Creado";
+                }else{
+                    return back()->withInput()->with('false', 'Algo no salio bien, intente nuevamente.');
+                }
+            }else{
+                // return "entro";
+                // return back()->withInput()->with('false', 'El monto que desea donar no es valido, puede donar '.($solicitud->monto_requerido-$solicitud->monto_juntado).' o menos, para que el monto juntado no supere al requerido.');
+                $msj="El monto que desea donar no es valido, puede donar ".($solicitud->monto_requerido-$solicitud->monto_juntado)." o menos, para que el monto juntado no supere al requerido.";
+                return "<script>alert('$msj'); history.back(1);</script>";
+                // return back();
+                
+            }
+        }
+        
+        
     }
 
     public function show($id){

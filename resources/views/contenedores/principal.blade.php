@@ -4,8 +4,10 @@
 <head>
     <!-- Esta es la plantilla para el manejo de sesion en laravel -->
     <!--Import Awesome Icon Font-->
+
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
     <!--Import bootstrap.css-->
+    <script type="text/javascript" src="{{ asset('js/var.js') }}"></script>
     <link type="text/css" rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}"  media="screen,projection"/>
     <link type="text/css" rel="stylesheet" href="{{ asset('css/menus.css') }}"  media="screen,projection"/>
     <!-- Definiendo el titulo de la pagina -->
