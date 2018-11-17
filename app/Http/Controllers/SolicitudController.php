@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\SolicitudStoreController;
 use App\Http\Controllers\SupraController;
+use App\Http\Controllers\UsuarioController;
 use App\Solicitud;
 
 class SolicitudController extends Controller
@@ -25,7 +26,13 @@ class SolicitudController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create(){
-        return view('solicitudes.crearSolicitud');
+        $r=UsuarioController::editSolicitante();
+        if($r==null){
+            return view('solicitudes.crearSolicitud');
+        }else{
+            return $r;
+        }
+        
     }
 
     /**

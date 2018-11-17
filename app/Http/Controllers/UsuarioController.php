@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 use App\Usuario;
 use App\Http\Requests\UsuarioStore;
 use App\Http\Requests\UsuarioSolicitanteEdit;
@@ -69,7 +70,7 @@ class UsuarioController extends Controller
         //
     }
 
-    public function editSolicitante(){
+    public static function editSolicitante(){
         $user=session('datos');
         if($user["nivel"]==null){
             return view('usuarios.editUsuarioSolicitante');
@@ -83,6 +84,8 @@ class UsuarioController extends Controller
         if(!$usuario->save()){
             return back()->withInput()->with('false', 'Algo no salio bien, intente nuevamente');
         }
+        session(['datos'=> Auth::user()->session()]);
+        return redirect("/solicitudes/crear");
     }
     /**
      * Update the specified resource in storage.
