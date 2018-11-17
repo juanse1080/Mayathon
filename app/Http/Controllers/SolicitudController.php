@@ -187,14 +187,12 @@ class SolicitudController extends Controller {
             $m->url = SupraController::subirArchivo($f,'solicitud'.$m->pk_multimedia,'foto');
             $m->save();
         }
-        // dd($request->videos);
         foreach ($request->videos as $v) {
             if($v != null){
                 list($inutil,$IDvideo)=explode("=",$v);
                 Multimedia::create([
                     'fk_solicitud' => $solicitud->pk_solicitud,
                     'tipo' => 'video',
-                    'descripcion' => $solicitud->descripcion_video,
                     'url' => $IDvideo,
                 ]);
             }

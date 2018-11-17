@@ -22,7 +22,8 @@
       Autor: Douglas y Pepe
     */
     public static function subirArchivo($request,String $nombre,String $input){
-      $nombre .= '.'.$request.'.jpeg';
+      
+      $nombre .= '.jpeg';
       $file = $request->storeAs('public', $nombre);
       return "/storage/".$nombre;
     }
