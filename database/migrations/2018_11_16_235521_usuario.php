@@ -42,7 +42,7 @@ class Usuario extends Migration {
             $table->increments('pk_multimedia');
             $table->unsignedInteger('fk_solicitud');
             $table->string('tipo');
-            $table->string('descripcion');
+            $table->string('descripcion')->nullable();
             $table->string('url');
             $table->timestamps();
         });
