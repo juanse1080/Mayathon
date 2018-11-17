@@ -59,7 +59,7 @@
                     </p>
                     <a href="{{route('solicitudes.show',$item->pk_solicitud)}}" class="btn btn-primary">ver mas</a>
                     @if ($item->estado=='e')
-                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
+                        <button type="button" identificador="{{$item->pk_solicitud}}" id="g{{$item->pk_solicitud}}" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
                             Responder
                           </button>
                     @endif
@@ -81,8 +81,8 @@
                                   solo tienes que dar clic el boton aceptar de lo contrario, rechazalos.
                                 </div>
                                 <div class="modal-footer">
-                                  <button type="button" identificador="{{$item->pk_solicitud}}" respuesta ="a" class="clos btn btn-secondary" data-dismiss="modal">Rechazarlos</button>
-                                  <button type="button" identificador="{{$item->pk_solicitud}}" respuesta ="r" class="clos btn btn-primary" data-dismiss="modal">Aceptarlos</button>
+                                  <button type="button" respuesta ="r" class="clos btn btn-secondary" data-dismiss="modal">Rechazarlos</button>
+                                  <button type="button" identificador="{{$item->pk_solicitud}}" respuesta ="a" class="clos btn btn-primary" data-dismiss="modal">Aceptarlos</button>
                                 </div>
                               </div>
                             </div>
@@ -98,11 +98,13 @@
 </div>
 <script>
     $(document).ready(function(){
-        $('.clos').click(function(){
-            var h = $('.btn-danger');
+        $('.btn-danger').click(function(){
             var id = $(this).attr('identificador');
-            var respuesta = $(this).attr('respuesta');
-            update('aceptar', id, respuesta, h);
+            var h = $(this);
+            $('.clos').click(function(){
+                var respuesta = $(this).attr('respuesta');
+                update('aceptar', id, respuesta, h);
+            });
         });
     });
 </script>
