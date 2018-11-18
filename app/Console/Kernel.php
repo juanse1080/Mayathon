@@ -16,7 +16,7 @@ class Kernel extends ConsoleKernel {
     protected function schedule(Schedule $schedule){
         while(true){
             notificacionSolicitante::handle();
-            sleep(10);
+            sleep(86400);
         }
         // $schedule->command('notificacion:solicitante')->everyMinute();
     }
